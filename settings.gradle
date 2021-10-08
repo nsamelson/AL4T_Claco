@@ -1,0 +1,2 @@
+rootProject.name = "AL4T_Claco"
+include ':app'
