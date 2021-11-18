@@ -1,17 +1,22 @@
 package com.example.al4t_claco
 
-class Teacher(name: String, login: String, password: String) : User(name, login, password) {
+class Teacher(name: String, login: String, password: String, workspace: List<Course>) :
+    User(name, login, password, workspace) {
 
-    fun EditCourse(course: Course): Boolean{
+    fun EditCourse(courseCode: String): Boolean{
         //TODO: add parameters to what the teacher could change
         return TODO()
     }
 
-    fun AddActivities(course: Course, activity: Activity): Boolean{
+    fun EditActivity(activityCode: String): Boolean{
         return TODO()
     }
 
-    fun DeleteActivities(course: Course, activityCode: String): Boolean{
+    fun AddActivities(courseCode: String, activity: Activity): Boolean{
+        return TODO()
+    }
+
+    fun DeleteActivities(courseCode: String, activityCode: String): Boolean{
         return TODO()
     }
 
@@ -23,6 +28,7 @@ class Teacher(name: String, login: String, password: String) : User(name, login,
         return TODO()
 
     }
+
 
 
 }

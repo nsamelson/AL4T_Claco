@@ -12,14 +12,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //--------------TEST ZONE
+        /*
         println(" \n \n_______________\n TEST ZONE \n________________\n")
         Log.d("TAG", "TEST 1")
         var Nico = Teacher("Nicolas","17288@ecam.be","coucou")
         val isChanged = Nico.ModifyPassword("coucou","Hello")
         val findCourse = Nico.GetCourse("wou")
         println(findCourse)
-
-
         println(" \n \n_______________\n TEST ZONE \n________________\n")
+        */
+
     }
 }
