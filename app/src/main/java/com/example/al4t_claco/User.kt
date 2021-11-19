@@ -9,7 +9,7 @@ abstract class User (name: String, login: String, password: String, workspace: L
     var Workspace = workspace
     val Schedule = Calendar(Workspace)
 
-    private var Password = password;
+    var  Password = password;
 
 
     fun ModifyPassword (oldPassword: String, newPassword: String): Boolean{

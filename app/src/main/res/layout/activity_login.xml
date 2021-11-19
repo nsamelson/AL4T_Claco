@@ -18,7 +18,8 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="255dp"
                 android:layout_height="46dp"
-                android:hint="Email" android:drawableLeft="@android:drawable/sym_action_email"/>
+                android:hint="Email" android:drawableLeft="@android:drawable/sym_action_email"
+                android:id="@+id/EmailId"/>
         <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -30,7 +31,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="254dp"
                         android:layout_height="50dp"
-                        android:hint="Password" android:drawableLeft="@android:drawable/ic_lock_idle_lock"/>
+                        android:hint="Password" android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+                        android:id="@+id/PassId"/>
             </com.google.android.material.textfield.TextInputLayout>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
