@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
 
     <TextView
-            android:text="Resources"
+            android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/Resources"
+            android:layout_height="wrap_content" android:id="@+id/ActivityName"
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="18sp" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintVertical_bias="0.0" android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp" android:layout_marginEnd="8dp"/>
+            android:layout_marginTop="8dp" android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.498"/>
     <TableLayout
-            android:layout_width="413dp"
-            android:layout_height="172dp" tools:layout_editor_absoluteY="33dp" tools:layout_editor_absoluteX="-3dp"
-            tools:ignore="MissingConstraints">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/ActivityName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+            android:id="@+id/tableLayout">
 
         <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:id="@+id/ActivityName">
+                  android:id="@+id/CourseName">
             <TextView
-                    android:text="Activity Name"
+                    android:text="Course"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:id="@+id/ActivityNameTitle" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/CourseNameTitle" android:layout_weight="1"/>
             <TextView
                     android:text="TextView"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:id="@+id/ActivityNameValue" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/CourseNameValue" android:layout_weight="1"/>
         </TableRow>
         <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:id="@+id/ActivityCode">
@@ -45,11 +51,49 @@
             <TextView
                     android:text="Teachers"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:id="@+id/ActivityTeachersTitle" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/ActivityTeachersTitle"
+                    android:layout_weight="1"/>
             <TextView
                     android:text="TextView"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:id="@+id/ActivityTeachersValue" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/ActivityTeachersValue"
+                    android:layout_weight="1"/>
         </TableRow>
     </TableLayout>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="10px"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
+                android:id="@+id/GridResources" app:columnCount="4"
+                android:scrollbarStyle="insideInset"
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:scrollbarAlwaysDrawVerticalTrack="false" android:scrollbars="none"
+                app:useDefaultMargins="true">
+
+
+            <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="test" android:drawableTop="@drawable/pdf_medium"
+                    android:autoSizeTextType="uniform"
+                    android:textColor="@color/black" android:textAllCaps="false"
+                    android:background="#00FFFFFF" android:backgroundTint="@color/black"
+                    android:backgroundTintMode="add"/>
+
+
+        </androidx.gridlayout.widget.GridLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

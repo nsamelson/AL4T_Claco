@@ -11,6 +11,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.resources)
 
+        getSupportActionBar()?.setTitle("Resources")
+
+        var teachers = listOf("Prof")
+        /*var activity = Activity("francais","fr",teachers)
+        var courses = List<Course>((Course("test","test",3,"wpi",))
+        var nico = Student("Nicolas","nicolas","nicolas",)*/
+
+        /*val binding: ActivityMainBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_main)
+
+        binding.user = User("Test", "User")*/
+
+
+
+
+
         //--------------TEST ZONE
         /*
         println(" \n \n_______________\n TEST ZONE \n________________\n")
