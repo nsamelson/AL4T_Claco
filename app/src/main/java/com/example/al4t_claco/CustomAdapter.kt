@@ -45,6 +45,8 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<String>, var CourseImag
                         Toast.LENGTH_SHORT
                     ).show()
             }
+
+
         }
     }
 
