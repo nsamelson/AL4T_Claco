@@ -2,7 +2,7 @@ package com.example.al4t_claco
 
 class Calendar(courses: List<Course>) {
     private val Courses = courses
-    val Events = Courses.flatMap { it.Activities }.flatMap { it.Events }
+    //val Events = Courses.flatMap { it.Activities }.flatMap { it.Events }
     /*
     private var EventList: MutableList<Event> = mutableListOf<Event>()
 
