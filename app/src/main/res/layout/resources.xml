@@ -7,7 +7,7 @@
         <import type="java.util.Map"/>
 
         <variable
-                name="resource"
+                name="activity"
                 type="com.example.al4t_claco.view.DataActivity" />
     </data>
 
@@ -16,7 +16,7 @@
                                                        android:layout_height="match_parent"
                                                        tools:context=".view.DataActivity">
         <TextView
-                android:text="@{resource.name}"
+                android:text="@{activity.name}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/ActivityName"
                 app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,7 @@
                         android:layout_weight="1"/>
 
                 <TextView
-                        android:text="@{resource.course}"
+                        android:text="@{activity.course}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" android:id="@+id/CourseNameValue"
                         android:layout_weight="1"
@@ -64,7 +64,7 @@
                         android:layout_weight="1"
                         android:layout_marginRight="1dp" />
                 <TextView
-                        android:text="@{resource.code}"
+                        android:text="@{activity.code}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" android:id="@+id/ActivityCodeValue"
                         android:layout_weight="1"
@@ -81,7 +81,7 @@
                         android:layout_marginRight="1dp"
                 />
                 <TextView
-                        android:text="@{resource.teachers}"
+                        android:text="@{activity.teachers}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" android:id="@+id/ActivityTeachersValue"
                         android:layout_weight="1"
@@ -110,10 +110,8 @@
                     android:scrollbarAlwaysDrawVerticalTrack="false" android:scrollbars="none"
                     app:useDefaultMargins="true"
                     >
-                    <!--app:inflateData="@{resource.files}"-->
 
-
-                <Button
+                <!--<Button
                         android:id="@+id/button1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -121,8 +119,9 @@
                         android:drawableTop="@drawable/pdf_medium"
                         android:autoSizeTextType="uniform"
                         android:textColor="@color/black" android:textAllCaps="false"
-                        android:background="#00FFFFFF" android:backgroundTint="@color/black"
-                        android:backgroundTintMode="add"/>
+                        style="?android:attr/borderlessButtonStyle"
+                        android:tooltipText="coucou"
+                />-->
 
 
             </androidx.gridlayout.widget.GridLayout>
