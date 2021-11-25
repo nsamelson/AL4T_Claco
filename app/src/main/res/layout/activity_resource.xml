@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="java.util.List"/>
@@ -10,11 +11,10 @@
                 name="activity"
                 type="com.example.al4t_claco.view.DataActivity" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-                                                       android:layout_height="match_parent"
-                                                       tools:context=".view.DataActivity">
+            android:layout_height="match_parent"
+            tools:context=".controller.ResourceActivity">
         <TextView
                 android:text="@{activity.name}"
                 android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
 
             <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/CourseName"
-                      >
+            >
 
 
                 <TextView
@@ -56,7 +56,7 @@
             </TableRow>
             <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/ActivityCode" android:background="@color/white"
-                      >
+            >
                 <TextView
                         android:text="Code"
                         android:layout_width="0dp"
@@ -68,11 +68,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" android:id="@+id/ActivityCodeValue"
                         android:layout_weight="1"
-                        />
+                />
             </TableRow>
             <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/ActivityTeachers"
-                      >
+            >
                 <TextView
                         android:text="Teachers"
                         android:layout_width="0dp"
@@ -109,7 +109,7 @@
                     android:scrollbarAlwaysDrawHorizontalTrack="false"
                     android:scrollbarAlwaysDrawVerticalTrack="false" android:scrollbars="none"
                     app:useDefaultMargins="true"
-                    >
+            >
 
                 <!--<Button
                         android:id="@+id/button1"
@@ -126,5 +126,6 @@
 
             </androidx.gridlayout.widget.GridLayout>
         </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
