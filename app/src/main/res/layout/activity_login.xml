@@ -47,8 +47,8 @@
             android:textAlignment="center" android:textSize="20sp" android:textStyle="bold"/>
     <Button
             android:text="Login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button2"
+            android:layout_width="257dp"
+            android:layout_height="72dp" android:id="@+id/button2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>

@@ -1,21 +1,22 @@
 package com.example.al4t_claco.model
 
 import java.sql.Date
+import java.io.Serializable
 import java.sql.Time
 
-abstract class User (name: String, login: String, password: String, workspace: List<Course>){
+abstract class User (name: String, login: String, password: String, workspace: List<Course>):Serializable{
     val name = name.uppercase();
     val login = login;
     var workspace = workspace
     val schedule = Calendar(workspace)
 
-    var  Password = password;
+    var  password = password;
 
 
     fun modifyPassword (oldPassword: String, newPassword: String): Boolean{
         var isChanged = false
-        if (oldPassword == Password){
-            Password = newPassword
+        if (oldPassword == password){
+            password = newPassword
             isChanged = true
         }
         return isChanged

@@ -9,7 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AL4T_Claco">
-        <activity android:name=".controller.ResourceActivity"
+        <activity android:name=".controller.Dashboard"
                   android:parentActivityName=".LoginActivity">
         </activity>
         <activity
