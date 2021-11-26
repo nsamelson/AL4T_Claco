@@ -1,17 +1,16 @@
- package com.example.al4t_claco
+ package com.example.al4t_claco.controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.GridView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.al4t_claco.R
 import com.google.android.material.navigation.NavigationView
 
  class Dashboard  : AppCompatActivity() {

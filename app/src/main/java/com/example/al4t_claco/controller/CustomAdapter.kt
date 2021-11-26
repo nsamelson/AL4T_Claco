@@ -1,4 +1,4 @@
-package com.example.al4t_claco
+package com.example.al4t_claco.controller
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
