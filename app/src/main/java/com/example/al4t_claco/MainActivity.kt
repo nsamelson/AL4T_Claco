@@ -1,9 +1,9 @@
 package com.example.al4t_claco
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.example.al4t_claco.controller.CourseInformation
 import com.example.al4t_claco.controller.ResourceActivity
 import com.example.al4t_claco.model.Activity
@@ -15,8 +15,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
+        setContentView(R.layout.dashboard)
 
+    }
 
 
     }
@@ -50,5 +52,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         return intent
     }
-
 }
