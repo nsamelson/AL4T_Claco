@@ -1,18 +1,18 @@
-package com.example.al4t_claco
+package com.example.al4t_claco.model
 
 import java.sql.Date
 import java.sql.Time
 
 abstract class User (name: String, login: String, password: String, workspace: List<Course>){
-    val Name = name.uppercase();
-    val Login = login;
-    var Workspace = workspace
-    val Schedule = Calendar(Workspace)
+    val name = name.uppercase();
+    val login = login;
+    var workspace = workspace
+    val schedule = Calendar(workspace)
 
     var  Password = password;
 
 
-    fun ModifyPassword (oldPassword: String, newPassword: String): Boolean{
+    fun modifyPassword (oldPassword: String, newPassword: String): Boolean{
         var isChanged = false
         if (oldPassword == Password){
             Password = newPassword
@@ -21,29 +21,29 @@ abstract class User (name: String, login: String, password: String, workspace: L
         return isChanged
     }
 
-    fun GetCourse(courseCode: String): String{
+    fun getCourse(courseCode: String): String{
         //TODO: find a way to return the Course
         //TODO: replace the for loop with a if (courseCode in Workspace)
-        for (course in Workspace){
-            if (courseCode == course.Code){
-                return course.Name
+        for (course in workspace){
+            if (courseCode == course.code){
+                return course.name
             }
         }
         return "Could not find the course that goes by the code $courseCode"
     }
 
-    fun GetFreeClassRooms(date: Date,time: Time): Classroom{
+    fun getFreeClassRooms(date: Date,time: Time): Classroom {
         //TODO: see if there is a DateTime module
 
         return TODO()
     }
 
-    fun GetClassroomSchedule(classroomName: String): List<Event>{
+    fun getClassroomSchedule(classroomName: String): List<Event>{
 
         return TODO()
     }
 
-    fun DownladResource(activityCode: String,resourceName: String){
+    fun downladResource(activityCode: String,resourceName: String){
         //TODO: maybe put inside activities
     }
 

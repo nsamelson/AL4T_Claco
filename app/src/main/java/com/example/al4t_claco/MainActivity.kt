@@ -1,26 +1,33 @@
 package com.example.al4t_claco
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.example.al4t_claco.controller.ResourceActivity
+import com.example.al4t_claco.model.Activity
+import com.example.al4t_claco.model.File
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //--------------TEST ZONE
-        /*
-        println(" \n \n_______________\n TEST ZONE \n________________\n")
-        Log.d("TAG", "TEST 1")
-        var Nico = Teacher("Nicolas","17288@ecam.be","coucou")
-        val isChanged = Nico.ModifyPassword("coucou","Hello")
-        val findCourse = Nico.GetCourse("wou")
-        println(findCourse)
-        println(" \n \n_______________\n TEST ZONE \n________________\n")
-        */
+
 
     }
+    fun openResourceActivity(view: View):Intent{
+        val activity = Activity("Informatique","4inf",listOf("Lorge","Lurkin","Dekimpe"))
+        activity.resources = listOf(File("a","pdf"), File("b","pdf"), File("c","PDF"), File("d","text"))
+
+        val intent = Intent(this, ResourceActivity::class.java).apply {
+            putExtra("course", "inf4")
+            putExtra("activity",activity)
+        }
+        startActivity(intent)
+        return intent
+    }
+
 }
