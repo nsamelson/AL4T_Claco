@@ -10,10 +10,10 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AL4T_Claco">
         <activity android:name=".controller.ResourceActivity"
-                  android:parentActivityName=".MainActivity">
+                  android:parentActivityName=".LoginActivity">
         </activity>
         <activity
-                android:name=".MainActivity"
+                android:name=".LoginActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
