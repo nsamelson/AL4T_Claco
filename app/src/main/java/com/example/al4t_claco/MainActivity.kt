@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     fun openResourceActivity(view: View): Intent {
         val activity = Activity("Informatique","4inf",listOf("Lorge","Lurkin","Dekimpe"))
-        activity.resources = listOf(File("a","pdf"), File("b","pdf"), File("c","PDF"), File("d","text"))
+        activity.resources = listOf(File("file 1","pdf"), File("file 2","pdf"), File("file 3","pdf"), File("file 4","PDF"))
 
         val intent = Intent(this, ResourceActivity::class.java).apply {
             putExtra("course", "inf4")

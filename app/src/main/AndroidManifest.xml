@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.al4t_claco">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -9,11 +10,19 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AL4T_Claco">
-        <activity android:name=".controller.Dashboard"
-                  android:parentActivityName=".LoginActivity">
+        <activity android:name=".controller.PdfViewActivity"
+                  android:parentActivityName=".controller.ResourceActivity">
         </activity>
         <activity
-                android:name=".LoginActivity"
+                android:name=".controller.Dashboard"
+                android:parentActivityName=".LoginActivity">
+        </activity>
+        <activity
+                android:name=".controller.ResourceActivity"
+                android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+                android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
