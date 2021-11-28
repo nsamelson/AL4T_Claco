@@ -11,9 +11,10 @@ import com.example.al4t_claco.model.File
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-        setContentView(R.layout.dashboard)
-        
+        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.dashboard)
+        //setContentView(R.layout.fragment_app_bar)
+
     }
 
     fun openResourceActivity(view: View): Intent {
