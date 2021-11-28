@@ -3,19 +3,25 @@ package com.example.al4t_claco.controller
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.gridlayout.widget.GridLayout
-import com.example.al4t_claco.model.Activity
-import com.example.al4t_claco.model.File
 import com.example.al4t_claco.R
 import com.example.al4t_claco.databinding.ActivityResourceBinding
+import com.example.al4t_claco.model.Activity
+import com.example.al4t_claco.model.File
 import com.example.al4t_claco.view.DataActivity
+import com.lokiy.kit.utils.get
+import java.io.FileOutputStream
+import java.io.IOException
+
 
 class ResourceActivity() : AppCompatActivity() {
 
@@ -29,18 +35,28 @@ class ResourceActivity() : AppCompatActivity() {
         binding.activity = DataActivity(activity,course.toString())
         supportActionBar?.title = "Resources"
 
-        fun downloadFile(file: File, storageLocation: String){
-            when(storageLocation){
-                "assets" ->{
-                    //TODO("implement download method")
-                    Toast.makeText(applicationContext, "TODO", Toast.LENGTH_SHORT).show()
+        fun downloadFile(file: File){
+            //TODO : find another method to get the download directory
+            val outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            val outFile = java.io.File(outDir, file.fullName)
 
+            val myInput = this.assets.open(file.fullName)
+
+            try{
+                val myOutput = FileOutputStream(outFile.path)
+                try {
+                    myInput.copyTo(myOutput)
                 }
-                "storage" ->{
-                    //TODO("implement download method")
-                    Toast.makeText(applicationContext, "TODO", Toast.LENGTH_SHORT).show()
+                catch (e: IOException){
+                    Toast.makeText(applicationContext,e.toString(),Toast.LENGTH_SHORT).show()
                 }
-                else -> Toast.makeText(applicationContext, "wrong location", Toast.LENGTH_SHORT).show()
+                finally {
+                    Toast.makeText(applicationContext,"downloaded File to ${outFile}",Toast.LENGTH_SHORT).show()
+                    myInput.close()
+                    myOutput.close()
+                }
+            } catch (e: IOException){
+                Toast.makeText(applicationContext,e.toString(),Toast.LENGTH_LONG).show()
             }
         }
 
@@ -49,17 +65,14 @@ class ResourceActivity() : AppCompatActivity() {
             val intent = Intent(this, PdfViewActivity::class.java)
             intent.putExtra("file", file)
             startActivity(intent)
-
-            //finish()
-            //return intent
         }
 
         //popup listener
         fun onPopupListener(dialog: Int, whichFile: File){
-            Toast.makeText(applicationContext,dialog, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext,dialog, Toast.LENGTH_SHORT).show()
 
             when(dialog){
-                R.string.download -> downloadFile(whichFile,"storage")
+                R.string.download -> downloadFile(whichFile)
                 R.string.open -> openFile(whichFile)
             }
         }

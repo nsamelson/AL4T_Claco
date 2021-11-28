@@ -19,6 +19,7 @@ class PdfViewActivity : AppCompatActivity() {
 
     }
 
+    // To get back to the activity
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
