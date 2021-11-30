@@ -23,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
         val email = findViewById<TextInputEditText>(R.id.EmailId)
         val pass = findViewById<TextInputEditText>(R.id.PassId)
         val button = findViewById<Button>(R.id.button2)
+
         button.setOnClickListener {
             if ((email.text.toString() == student.login) and (pass.text.toString() == student.password)){
                 val intent = Intent(this, Dashboard::class.java).apply {

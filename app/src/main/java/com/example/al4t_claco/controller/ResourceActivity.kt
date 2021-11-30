@@ -2,21 +2,28 @@ package com.example.al4t_claco.controller
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.gridlayout.widget.GridLayout
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.File
 import com.example.al4t_claco.R
 import com.example.al4t_claco.databinding.ActivityResourceBinding
 import com.example.al4t_claco.view.DataActivity
+import com.google.android.material.navigation.NavigationView
 
 class ResourceActivity() : AppCompatActivity() {
+    lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,24 @@ class ResourceActivity() : AppCompatActivity() {
         binding.activity = DataActivity(activity,course.toString())
         supportActionBar?.title = "Resources"
 
+        //Add the side menu to the page
+        val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
+        val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
+
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
+                R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
+                R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
 
         fun showResources(files: List<File>) {
             val gridlayout = findViewById<GridLayout>(R.id.gridResources)
@@ -82,5 +107,13 @@ class ResourceActivity() : AppCompatActivity() {
             }
         }
         showResources(activity.resources)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

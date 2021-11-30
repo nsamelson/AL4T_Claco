@@ -12,6 +12,9 @@
         <activity android:name=".controller.Dashboard"
                   android:parentActivityName=".LoginActivity">
         </activity>
+        <activity android:name=".controller.Dashboard">
+
+        </activity>
         <activity
                 android:name=".LoginActivity"
                 android:exported="true">
