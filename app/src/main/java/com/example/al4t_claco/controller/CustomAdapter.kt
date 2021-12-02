@@ -17,11 +17,6 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<Course>, var CourseImag
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     var inflater: LayoutInflater
 
-    val activity = Activity("Info","4inf", listOf("Lorge","Lurkin","Dekimpe"))
-    val activity2 = Activity("Bidule","4inf", listOf("Lorge","Lurkin","Dekimpe"))
-    val activity3 = Activity("Truc","4inf", listOf("Lorge","Lurkin","Dekimpe"))
-    val activityList = listOf<Activity>(activity,activity2,activity3)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = inflater.inflate(R.layout.custom_grid_layout, parent, false)
         return ViewHolder(view)

@@ -14,10 +14,6 @@
         <activity android:name=".controller.PdfViewActivity"
                   android:parentActivityName=".controller.ResourceActivity">
         </activity>
-        <!--<activity
-                android:name=".controller.Dashboard"
-                android:parentActivityName=".LoginActivity">
-        </activity>-->
         <activity android:name=".controller.Dashboard">
 
         </activity>
@@ -25,12 +21,12 @@
                 android:name=".controller.ResourceActivity"
                 android:parentActivityName=".MainActivity">
         </activity>
-        <!--<activity
-                android:name=".controller.CourseInformation"
-                android:parentActivityName=".MainActivity">
-        </activity>-->
         <activity
-                android:name=".MainActivity"
+                android:name=".controller.CourseInformation"
+                android:parentActivityName=".controller.Dashboard">
+        </activity>
+        <activity
+                android:name=".LoginActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
