@@ -12,8 +12,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.al4t_claco.LoginActivity
-import com.example.al4t_claco.MainActivity
 import com.example.al4t_claco.R
+import com.example.al4t_claco.model.Activity
+import com.example.al4t_claco.model.Course
 import com.google.android.material.navigation.NavigationView
 
  class Dashboard  : AppCompatActivity() {
@@ -28,7 +29,7 @@ import com.google.android.material.navigation.NavigationView
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
 
-        val courseNames = ArrayList<String>();
+
         val courseImages = ArrayList<Int>();
 
 
@@ -48,12 +49,17 @@ import com.google.android.material.navigation.NavigationView
             }
             false
         }
+        val activity = Activity("Info","4inf", listOf("Lorge","Lurkin","Dekimpe"))
+        val activity2 = Activity("Bidule","4inf", listOf("Lorge","Lurkin","Dekimpe"))
+        val activityList = listOf<Activity>(activity,activity2)
 
-        courseNames.add("Course 1");
-        courseNames.add("Course 2");
-        courseNames.add("Course 3");
-        courseNames.add("Course 4");
-        courseNames.add("Course 5");
+        val course = Course("Info","4inf",4,5,"Lur", activityList)
+        val course1 = Course("Database","4DB",4,5,"Lor", activityList)
+        val course2 = Course("APPS","4app",4,5,"LRK", activityList)
+        val course3 = Course("Electronics","4el",4,5,"MCH", activityList)
+        val course4 = Course("Electicity","4inf",4,5,"CMS", activityList)
+
+        val courseNames = listOf<Course>(course,course1,course2,course3,course4);
 
 
         courseImages.add(R.drawable.ic_launcher_foreground);

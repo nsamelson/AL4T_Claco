@@ -10,10 +10,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.al4t_claco.R
+import com.example.al4t_claco.model.Activity
+import com.example.al4t_claco.model.Course
 
-class CustomAdapter(ctx: Context?, var CourseNames: List<String>, var CourseImages: List<Int>) :
+class CustomAdapter(ctx: Context?, var CourseNames: List<Course>, var CourseImages: List<Int>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     var inflater: LayoutInflater
+
+    val activity = Activity("Info","4inf", listOf("Lorge","Lurkin","Dekimpe"))
+    val activity2 = Activity("Bidule","4inf", listOf("Lorge","Lurkin","Dekimpe"))
+    val activity3 = Activity("Truc","4inf", listOf("Lorge","Lurkin","Dekimpe"))
+    val activityList = listOf<Activity>(activity,activity2,activity3)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = inflater.inflate(R.layout.custom_grid_layout, parent, false)
@@ -22,7 +29,7 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<String>, var CourseImag
 
     override fun onBindViewHolder(holder : ViewHolder, position: Int) {
         if(position < CourseNames.size) {              //defining int position = 4, that makes the bug. Need to change that, managing to keep index in bounds
-            holder.CourseName.setText(CourseNames[position])
+            holder.CourseName.setText(CourseNames[position].name)
             holder.gridIcon.setImageResource(CourseImages[position])
         }
     }
@@ -40,12 +47,15 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<String>, var CourseImag
             gridIcon = itemView.findViewById(R.id.courseImage)
 
 
+
                 itemView.setOnClickListener { v ->
-                    val intent = Intent(v.context, ResourceActivity::class.java)
+                    val intent = Intent(v.context, CourseInformation::class.java).apply {
+                        putExtra("course",CourseNames[adapterPosition])
+                    }
                     v.context.startActivity(intent)
                     Toast.makeText(
                         v.context,
-                        "${CourseNames[adapterPosition]}",
+                        "${CourseNames[adapterPosition].name}",
                         Toast.LENGTH_SHORT
                     ).show()
 
