@@ -30,10 +30,7 @@ class CourseInformation : AppCompatActivity() {
         setContentView(R.layout.activity_course_information)
 
         val course = intent.getSerializableExtra("course") as Course
-        /*val code = intent.getStringExtra("coursecode")
-        val year = intent.getStringExtra("year")
-        val credits = intent.getStringExtra("credits")
-        val teacher = intent.getStringExtra("teacher")*/
+        //test
 
         val binding: ActivityCourseInformationBinding = DataBindingUtil.setContentView(this, R.layout.activity_course_information)
         binding.course = DataCourse(course)
@@ -59,6 +56,15 @@ class CourseInformation : AppCompatActivity() {
             true
         }
 
+        fun openResourceActivity(activity: Activity, courseName: String): Intent {
+            val intent = Intent(this, ResourceActivity::class.java).apply {
+                putExtra("course", "inf4")
+                putExtra("activity",activity)
+            }
+            startActivity(intent)
+            return intent
+        }
+
         fun showCourseInformation(activities: List<Activity>) {
             val gridlayout = findViewById<GridLayout>(R.id.gridResources)
 
@@ -73,7 +79,7 @@ class CourseInformation : AppCompatActivity() {
                 newButton.maxWidth = R.drawable.folder_icon.toDrawable().intrinsicWidth
 
                 newButton.setOnClickListener(View.OnClickListener {
-                    //TODO("Link other page")
+                    openResourceActivity(activity,course.name)
 
                 })
                 gridlayout.addView(newButton)
