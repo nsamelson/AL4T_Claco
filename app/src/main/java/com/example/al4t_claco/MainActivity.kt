@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.al4t_claco.controller.CourseInformation
+import com.example.al4t_claco.controller.Dashboard
 import com.example.al4t_claco.controller.ResourceActivity
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
@@ -13,8 +14,8 @@ import com.example.al4t_claco.model.File
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-        setContentView(R.layout.dashboard)
+        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.dashboard)
         
     }
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val activityList = listOf<Activity>(activity,activity2,activity3,activity4,activity5,activity6,activity4,activity4,activity4)
         val course = Course("GPU_Computing","35foezkg",2021,6,"Lurkin", activityList)
 
-        val intent = Intent(this, CourseInformation::class.java).apply {
+        val intent = Intent(this, Dashboard::class.java).apply {
             putExtra("course",course)
         }
         startActivity(intent)

@@ -1,14 +1,15 @@
 package com.example.al4t_claco.controller
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.example.al4t_claco.R
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.example.al4t_claco.R
 
 class CustomAdapter(ctx: Context?, var CourseNames: List<String>, var CourseImages: List<Int>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -38,18 +39,21 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<String>, var CourseImag
             CourseName = itemView.findViewById(R.id.courseName)
             gridIcon = itemView.findViewById(R.id.courseImage)
 
+
                 itemView.setOnClickListener { v ->
+                    val intent = Intent(v.context, ResourceActivity::class.java)
+                    v.context.startActivity(intent)
                     Toast.makeText(
                         v.context,
                         "${CourseNames[adapterPosition]}",
                         Toast.LENGTH_SHORT
                     ).show()
+
             }
 
 
         }
     }
-
     init {
         inflater = LayoutInflater.from(ctx)
     }
