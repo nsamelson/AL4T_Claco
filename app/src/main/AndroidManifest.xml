@@ -11,6 +11,9 @@
             android:theme="@style/Theme.AL4T_Claco">
         <activity android:name=".controller.CourseInformation">
         </activity>
+        <activity android:name=".controller.Dashboard">
+
+        </activity>
         <activity
                 android:name=".controller.ResourceActivity"
                 android:parentActivityName=".MainActivity">
