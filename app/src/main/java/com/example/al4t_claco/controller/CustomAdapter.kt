@@ -48,6 +48,7 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<String>, var CourseImag
                         "${CourseNames[adapterPosition]}",
                         Toast.LENGTH_SHORT
                     ).show()
+
             }
 
 

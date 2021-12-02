@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu   xmlns:android="http://schemas.android.com/apk/res/android">
-                <item
-                    android:id="@+id/nav_home"
-                    android:title="Home"
-                />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+    />
 
-                <item
-                    android:id = "@+id/nav_calendar"
-                    android:title="Calendar"/>
+    <item
+            android:id="@+id/nav_calendar"
+            android:title="Calendar"/>
 
-                <item
-                    android:id="@+id/nav_forum"
-                    android:title="Forum"/>
+    <item
+            android:id="@+id/nav_forum"
+            android:title="Forum"/>
+    <item android:title="User">
+        <menu>
+            <item
+                android:id="@+id/password"
+                android:title="Change Password"/>
+            <item
+                    android:id="@+id/logout"
+                    android:title="Logout"
+            />
+        </menu>
+    </item>
+
 </menu>

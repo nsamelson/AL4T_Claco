@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.al4t_claco.LoginActivity
+import com.example.al4t_claco.MainActivity
 import com.example.al4t_claco.R
 import com.google.android.material.navigation.NavigationView
 
@@ -41,6 +43,8 @@ import com.google.android.material.navigation.NavigationView
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
                 R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
+                R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
+                R.id.logout -> startActivity(Intent(this, LoginActivity::class.java))
             }
             false
         }
