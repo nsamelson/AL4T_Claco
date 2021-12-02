@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    }
-
     fun openCourseInformation(view: View):Intent{
         val activity = Activity("Info","4inf", listOf("Lorge","Lurkin","Dekimpe"))
         val activity2 = Activity("Bidule","4inf", listOf("Lorge","Lurkin","Dekimpe"))
