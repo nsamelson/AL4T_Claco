@@ -14,10 +14,10 @@
         <activity android:name=".controller.PdfViewActivity"
                   android:parentActivityName=".controller.ResourceActivity">
         </activity>
-        <activity
+        <!--<activity
                 android:name=".controller.Dashboard"
                 android:parentActivityName=".LoginActivity">
-        </activity>
+        </activity>-->
         <activity android:name=".controller.Dashboard">
 
         </activity>

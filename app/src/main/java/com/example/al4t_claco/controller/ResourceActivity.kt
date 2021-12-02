@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -20,10 +21,7 @@ import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.File
 import com.example.al4t_claco.R
 import com.example.al4t_claco.databinding.ActivityResourceBinding
-import com.example.al4t_claco.model.Activity
-import com.example.al4t_claco.model.File
 import com.example.al4t_claco.view.DataActivity
-import com.lokiy.kit.utils.get
 import java.io.FileOutputStream
 import java.io.IOException
 
