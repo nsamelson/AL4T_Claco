@@ -34,9 +34,12 @@ import com.google.android.material.navigation.NavigationView
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
 
-        val courseImages = ArrayList<Int>()
+        val session = SessionManagement(applicationContext)
+        session.checkLogin()
 
-        val matricule = intent.getStringExtra("matricule")
+        var data : HashMap<String,String> = session.getUserDetails()
+
+        val matricule = data.get(SessionManagement.KEY_EMAIL)!!
         val headerView = navView.getHeaderView(0)
         val user = headerView.findViewById<TextView>(R.id.user)
         user.text = matricule
@@ -57,7 +60,7 @@ import com.google.android.material.navigation.NavigationView
                 R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
                 R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
-                R.id.logout -> startActivity(Intent(this, LoginActivity::class.java))
+                R.id.logout -> session.LogoutUser()
             }
             false
         }
