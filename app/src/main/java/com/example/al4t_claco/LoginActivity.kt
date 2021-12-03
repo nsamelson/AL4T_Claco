@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
         val teachers = listOf("Teacher1","Teacher2")
         val activity =  Activity("Architecture","4MIN-AL4T",teachers)
-        val course =  Course ("Mobile","14", 5, 5,"Teacher1",listOf(activity),R.drawable.ic_launcher_foreground)
+        val course =  Course ("Mobile","14", 5, 5,"Teacher1",listOf(activity))
         val teach = Teacher("Test", "tst", "123", listOf(course))
         val student = Student("Amine","1","123",listOf(course))
 

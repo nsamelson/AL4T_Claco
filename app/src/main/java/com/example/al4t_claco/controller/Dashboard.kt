@@ -18,6 +18,8 @@ import com.example.al4t_claco.R
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
 import com.example.al4t_claco.model.File
+import com.example.al4t_claco.view.DashboardData
+import com.example.al4t_claco.view.DataCourse
 import com.google.android.material.navigation.NavigationView
 
  class Dashboard  : AppCompatActivity() {
@@ -72,13 +74,20 @@ import com.google.android.material.navigation.NavigationView
 
         val activityList = listOf<Activity>(activity,activity2,activity3)
 
-        val course = Course("Info","4inf",4,5,"Lur", activityList,R.drawable.ic_launcher_foreground)
-        val course1 = Course("Database","4DB",4,5,"Lor", activityList,R.drawable.ic_launcher_foreground)
-        val course2 = Course("APPS","4app",4,5,"LRK", activityList,R.drawable.ic_launcher_foreground)
-        val course3 = Course("Electronics","4el",4,5,"MCH", activityList,R.drawable.ic_launcher_foreground)
-        val course4 = Course("Electricity","4inf",4,5,"CMS", activityList,R.drawable.electric_circuit)
+        val course = Course("Info","4inf",4,5,"Lur", activityList)
+        val course1 = Course("Database","4DB",4,5,"Lor", activityList)
+        val course2 = Course("APPS","4app",4,5,"LRK", activityList)
+        val course3 = Course("Electronics","4el",4,5,"MCH", activityList)
+        val course4 = Course("Electricity","4inf",4,5,"CMS", activityList)
 
-        val courseNames = listOf<Course>(course,course1,course2,course3,course4);
+        val course_logo = DashboardData(course,R.drawable.ic_launcher_foreground)
+        val course_logo1 = DashboardData(course1,R.drawable.ic_launcher_foreground)
+        val course_logo2 = DashboardData(course2,R.drawable.ic_launcher_foreground)
+        val course_logo3 = DashboardData(course3,R.drawable.ic_launcher_foreground)
+        val course_logo4 = DashboardData(course4,R.drawable.electric_circuit)
+
+
+        val courseNames = listOf<DashboardData>(course_logo,course_logo1,course_logo2,course_logo3,course_logo4);
 
         adapter = CustomAdapter(this,courseNames)
         courseList.adapter = adapter

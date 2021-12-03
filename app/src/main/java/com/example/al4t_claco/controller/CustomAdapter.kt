@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.al4t_claco.R
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
+import com.example.al4t_claco.view.DashboardData
 
-class CustomAdapter(ctx: Context?, var CourseNames: List<Course>) :
+class CustomAdapter(ctx: Context?, var CourseNames: List<DashboardData>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     var inflater: LayoutInflater
 
@@ -24,7 +25,7 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<Course>) :
 
     override fun onBindViewHolder(holder : ViewHolder, position: Int) {
         if(position < CourseNames.size) {              //defining int position = 4, that makes the bug. Need to change that, managing to keep index in bounds
-            holder.CourseName.setText(CourseNames[position].name)
+            holder.CourseName.setText(CourseNames[position].course.name)
             holder.gridIcon.setImageResource(CourseNames[position].logo)
         }
     }
@@ -45,12 +46,12 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<Course>) :
 
                 itemView.setOnClickListener { v ->
                     val intent = Intent(v.context, CourseInformation::class.java).apply {
-                        putExtra("course",CourseNames[adapterPosition])
+                        putExtra("course",CourseNames[adapterPosition].course)
                     }
                     v.context.startActivity(intent)
                     Toast.makeText(
                         v.context,
-                        "${CourseNames[adapterPosition].name}",
+                        "${CourseNames[adapterPosition].course.name}",
                         Toast.LENGTH_SHORT
                     ).show()
 
