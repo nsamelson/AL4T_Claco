@@ -99,7 +99,6 @@
                         android:background="@drawable/cell_shape"
                         android:padding="5dp"
                         android:text="@{course.credits}"/>
-
             </TableRow>
 
             <TableRow android:id="@+id/tableRow4"   android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -121,10 +120,10 @@
 
             </TableRow>
             <TableRow android:id="@+id/tableRow5"   android:layout_width="match_parent" android:layout_height="wrap_content">
-                <EditText android:id="@+id/CourseDescription"
+                <TextView android:id="@+id/CourseDescription"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:padding="5px"
+                          android:padding="5dp"
                           android:text="@{course.description}" android:editable="false"
                           android:textCursorDrawable="@drawable/border" android:textColorHint="@color/white"
                           android:background="@null"/>
@@ -135,7 +134,7 @@
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:padding="10px"
+                android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout" android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent"
