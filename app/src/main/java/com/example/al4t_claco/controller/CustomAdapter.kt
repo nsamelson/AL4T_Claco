@@ -13,7 +13,7 @@ import com.example.al4t_claco.R
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
 
-class CustomAdapter(ctx: Context?, var CourseNames: List<Course>, var CourseImages: List<Int>) :
+class CustomAdapter(ctx: Context?, var CourseNames: List<Course>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     var inflater: LayoutInflater
 
@@ -25,7 +25,7 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<Course>, var CourseImag
     override fun onBindViewHolder(holder : ViewHolder, position: Int) {
         if(position < CourseNames.size) {              //defining int position = 4, that makes the bug. Need to change that, managing to keep index in bounds
             holder.CourseName.setText(CourseNames[position].name)
-            holder.gridIcon.setImageResource(CourseImages[position])
+            holder.gridIcon.setImageResource(CourseNames[position].logo)
         }
     }
 
