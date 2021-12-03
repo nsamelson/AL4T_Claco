@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
+import android.widget.EditText
+import android.widget.TextView
 import com.example.al4t_claco.controller.Dashboard
 import com.example.al4t_claco.model.*
 import com.google.android.material.textfield.TextInputEditText
@@ -20,9 +22,10 @@ class LoginActivity : AppCompatActivity() {
         val teach = Teacher("Test", "tst", "123", listOf(course))
         val student = Student("Amine","1","123",listOf(course))
 
-        val email = findViewById<TextInputEditText>(R.id.EmailId)
-        val pass = findViewById<TextInputEditText>(R.id.PassId)
-        val button = findViewById<Button>(R.id.button2)
+        val email = findViewById<EditText>(R.id.edt_email)
+        val pass = findViewById<EditText>(R.id.edt_password)
+        val button = findViewById<Button>(R.id.btnLogIn)
+        val txtViewPassword = findViewById<TextView>(R.id.btnForgetPass)
 
         button.setOnClickListener {
             if ((email.text.toString() == student.login) and (pass.text.toString() == student.password)){
@@ -33,5 +36,13 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 }
             }
+        txtViewPassword.setOnClickListener{
+            val intent = Intent(this, ChangePassword::class.java).apply{
+                putExtra("name","Amine")
+                putExtra("matricule","17")
+            }
+            startActivity(intent)
         }
     }
+}
+
