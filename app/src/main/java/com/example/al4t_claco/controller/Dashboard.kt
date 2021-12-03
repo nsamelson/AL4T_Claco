@@ -74,11 +74,11 @@ import com.google.android.material.navigation.NavigationView
 
         val activityList = listOf<Activity>(activity,activity2,activity3)
 
-        val course = Course("Info","4inf",4,5,"Lur", activityList)
-        val course1 = Course("Database","4DB",4,5,"Lor", activityList)
-        val course2 = Course("APPS","4app",4,5,"LRK", activityList)
-        val course3 = Course("Electronics","4el",4,5,"MCH", activityList)
-        val course4 = Course("Electricity","4inf",4,5,"CMS", activityList)
+        val course = Course("Info","4inf",4,5,"Lur","Ceci est une description", activityList)
+        val course1 = Course("Database","4DB",4,5,"Lor","Ceci est une description", activityList)
+        val course2 = Course("APPS","4app",4,5,"LRK","Ceci est une description", activityList)
+        val course3 = Course("Electronics","4el",4,5,"MCH","Ceci est une description", activityList)
+        val course4 = Course("Electricity","4inf",4,5,"CMS","Ceci est une description", activityList)
 
         val course_logo = DashboardData(course,R.drawable.ic_launcher_foreground)
         val course_logo1 = DashboardData(course1,R.drawable.ic_launcher_foreground)

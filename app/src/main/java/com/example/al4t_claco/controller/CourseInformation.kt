@@ -3,6 +3,7 @@ package com.example.al4t_claco.controller
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -32,12 +33,13 @@ class CourseInformation : AppCompatActivity() {
         val course = intent.getSerializableExtra("course") as Course
         //test
 
-        val binding: ActivityCourseInformationBinding = DataBindingUtil.setContentView(this, R.layout.activity_course_information)
+        val binding: ActivityCourseInformationBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_course_information)
         binding.course = DataCourse(course)
         supportActionBar?.title = "Course"
 
-        val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
-        val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
+        val drawerLayout: DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
+        val navView: NavigationView = findViewById<View>(R.id.navView) as NavigationView
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -46,11 +48,11 @@ class CourseInformation : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
-                R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
-                R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
-                R.id.password -> Toast.makeText(applicationContext,"Change password", Toast.LENGTH_SHORT).show()
+                R.id.nav_calendar -> Toast.makeText(applicationContext, "Clicked Calendar", Toast.LENGTH_SHORT).show()
+                R.id.nav_forum -> Toast.makeText(applicationContext, "Clicked Forum", Toast.LENGTH_SHORT).show()
+                R.id.password -> Toast.makeText(applicationContext, "Change password", Toast.LENGTH_SHORT).show()
                 R.id.logout -> startActivity(Intent(this, LoginActivity::class.java))
             }
             true
@@ -59,7 +61,7 @@ class CourseInformation : AppCompatActivity() {
         fun openResourceActivity(activity: Activity, courseName: String): Intent {
             val intent = Intent(this, ResourceActivity::class.java).apply {
                 putExtra("course", "inf4")
-                putExtra("activity",activity)
+                putExtra("activity", activity)
             }
             startActivity(intent)
             return intent
@@ -79,7 +81,7 @@ class CourseInformation : AppCompatActivity() {
                 newButton.maxWidth = R.drawable.folder_icon.toDrawable().intrinsicWidth
 
                 newButton.setOnClickListener(View.OnClickListener {
-                    openResourceActivity(activity,course.name)
+                    openResourceActivity(activity, course.name)
 
                 })
                 gridlayout.addView(newButton)
@@ -88,10 +90,25 @@ class CourseInformation : AppCompatActivity() {
         showCourseInformation(course.activities)
 
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
+
+        when (item.itemId)
+        {
+            R.id.modify_description -> {
+
+
+                true
+            }
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.course_modify_menu, menu)
+        return true
     }
 }

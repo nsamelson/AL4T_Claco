@@ -9,6 +9,7 @@ data class DataCourse(private val course: Course) {
     val year = course.year.toString()
     val credits = course.credits.toString()
     val courseLeader = course.courseLeader
+    val description = course.description
 
 
 }

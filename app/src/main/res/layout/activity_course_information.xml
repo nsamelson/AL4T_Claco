@@ -120,7 +120,18 @@
                         android:text="@{course.courseLeader}"/>
 
             </TableRow>
+            <TableRow android:id="@+id/tableRow5"   android:layout_width="match_parent" android:layout_height="wrap_content">
+                <EditText android:id="@+id/CourseDescription"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:padding="5px"
+                          android:text="@{course.description}" android:editable="false"
+                          android:textCursorDrawable="@drawable/border" android:textColorHint="@color/white"
+                          android:background="@null"/>
+            </TableRow>
         </TableLayout>
+
+
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -130,10 +141,12 @@
                 android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
+
+
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+                app:layout_constraintTop_toBottomOf="@+id/CourseDescription"
                 android:id="@+id/gridResources" app:columnCount="4"
                 android:scrollbarStyle="insideInset"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
