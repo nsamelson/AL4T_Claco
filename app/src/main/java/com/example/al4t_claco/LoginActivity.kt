@@ -45,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(applicationContext, Dashboard::class.java).apply {
                     //putExtra("name","Amine")
                     //putExtra("matricule","17")
+
                 }
                 startActivity(intent)
                 }
