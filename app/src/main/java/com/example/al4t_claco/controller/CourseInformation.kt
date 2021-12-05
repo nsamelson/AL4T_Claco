@@ -140,7 +140,7 @@ class CourseInformation : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.course_modify_menu, menu)
+        menuInflater.inflate(R.menu.modify_course, menu)
         return true
     }
 }
