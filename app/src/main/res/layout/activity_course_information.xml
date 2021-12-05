@@ -99,7 +99,6 @@
                         android:background="@drawable/cell_shape"
                         android:padding="5dp"
                         android:text="@{course.credits}"/>
-
             </TableRow>
 
             <TableRow android:id="@+id/tableRow4"   android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -120,20 +119,33 @@
                         android:text="@{course.courseLeader}"/>
 
             </TableRow>
+            <TableRow android:id="@+id/tableRow5"   android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:id="@+id/CourseDescription"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:padding="5dp"
+                          android:text="@{course.description}" android:editable="false"
+                          android:textCursorDrawable="@drawable/border" android:textColorHint="@color/white"
+                          android:background="@null"/>
+            </TableRow>
         </TableLayout>
+
+
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:padding="10px"
+                android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout" android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
+
+
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+                app:layout_constraintTop_toBottomOf="@+id/CourseDescription"
                 android:id="@+id/gridResources" app:columnCount="4"
                 android:scrollbarStyle="insideInset"
                 android:scrollbarAlwaysDrawHorizontalTrack="false"
