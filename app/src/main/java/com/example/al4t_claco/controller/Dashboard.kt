@@ -64,9 +64,9 @@ import com.google.android.material.navigation.NavigationView
 
         //TODO : Bouger ca autre part mais pas ultra important pour le moment
 
-        val activity = Activity("Info","4inf", listOf("Lorge","Lurkin","Dekimpe"))
-        val activity2 = Activity("Bidule","4inf", listOf("Lorge","Lurkin","Dekimpe"))
-        val activity3 = Activity("Truc","4inf", listOf("Lorge","Lurkin","Dekimpe"))
+        val activity = Activity("Info","4inf", listOf("Lorge","Lurkin","Dekimpe"),"description 1")
+        val activity2 = Activity("Bidule","4inf", listOf("Lorge","Lurkin","Dekimpe"),"description 2")
+        val activity3 = Activity("Truc","4inf", listOf("Lorge","Lurkin","Dekimpe"),"description 3")
 
         activity.resources = listOf(File("file 1","pdf"), File("file 2","pdf"), File("file 3","pdf"), File("file 4","PDF"))
         activity2.resources = listOf(File("file 1","pdf"), File("file 2","pdf"), File("file 3","pdf"), File("file 4","PDF"))

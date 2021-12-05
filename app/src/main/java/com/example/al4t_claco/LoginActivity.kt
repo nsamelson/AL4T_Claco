@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val teachers = listOf("Teacher1","Teacher2")
-        val activity =  Activity("Architecture","4MIN-AL4T",teachers)
+        val activity =  Activity("Architecture","4MIN-AL4T",teachers,"desc")
         val course =  Course ("Mobile","14", 5, 5,"Teacher1",listOf(activity))
         val teach = Teacher("Test", "tst", "123", listOf(course))
         val student = Student("Amine","1","123",listOf(course))

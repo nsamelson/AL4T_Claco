@@ -88,9 +88,22 @@
                 <TextView
                         android:text="@{activity.teachers}"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content" android:id="@+id/ActivityTeachersValue"
+                        android:layout_height="wrap_content" android:id="@+id/activityTeachersValue"
                         android:layout_weight="1"
                 />
+            </TableRow>
+            <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/DescriptionRow" android:background="@color/white"
+            >
+                <TextView
+                        android:text="@{activity.description}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" android:id="@+id/activityDescription"
+                        android:layout_weight="1"
+                        android:layout_marginRight="1dp"
+                />
+
+
             </TableRow>
         </TableLayout>
         <ScrollView
