@@ -6,9 +6,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.InputType
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -157,11 +162,53 @@ class ResourceActivity() : AppCompatActivity() {
         showResources(activity.resources)
     }
 
+    fun editTextDialog(text: TextView, whichText: String){
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setTitle("Edit the ${whichText}")
 
+        val input = EditText(this)
+
+        input.setText(text.text)
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        dialogBuilder.setView(input)
+
+        dialogBuilder.setNegativeButton(android.R.string.cancel,
+            DialogInterface.OnClickListener { dialog, whichButton -> })
+        dialogBuilder.setPositiveButton(R.string.ok,
+            DialogInterface.OnClickListener { dialog, whichButton ->
+                //TODO : set new description in the activity with the session
+                text.text = input.text.toString()
+                //activity.description = input.text.toString()
+            })
+        val b = dialogBuilder.create()
+        b.show()
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.mod_description -> {
+                Toast.makeText(applicationContext,"Clicked on modify description",Toast.LENGTH_SHORT).show()
+                val text = findViewById<TextView>(R.id.activityDescription)
+                editTextDialog(text,"description")
+                true
+            }
+            R.id.mod_teachers ->{
+
+                Toast.makeText(applicationContext,"Clicked on teachers",Toast.LENGTH_SHORT).show()
+                val text = findViewById<TextView>(R.id.activityTeachersValue)
+                editTextDialog(text,"teachers")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
         if(toggle.onOptionsItemSelected(item)){
             return true
         }
         return super.onOptionsItemSelected(item)
+
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.modify_activity, menu)
+        return true
     }
 }
