@@ -2,7 +2,6 @@
 
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceActivity
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -13,14 +12,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.al4t_claco.LoginActivity
 import com.example.al4t_claco.R
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
 import com.example.al4t_claco.model.File
+import com.example.al4t_claco.model.Student
 import com.example.al4t_claco.view.DashboardData
-import com.example.al4t_claco.view.DataCourse
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.Gson
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+
 
  class Dashboard  : AppCompatActivity() {
     var adapter: CustomAdapter? =null
@@ -39,12 +42,15 @@ import com.google.android.material.navigation.NavigationView
 
         var data : HashMap<String,String> = session.getUserDetails()
 
-        val matricule = data.get(SessionManagement.KEY_EMAIL)!!
+        val matricule = data.get(SessionManagement.companion.KEY_EMAIL)!!
         val headerView = navView.getHeaderView(0)
         val user = headerView.findViewById<TextView>(R.id.user)
         user.text = matricule
 
+        //val liste = data.get(SessionManagement.KEY_COURSES)
+        //var myList: List<String> = listOf(liste.toString())
 
+        var test = data.get(SessionManagement.companion.KEY_COURSES)!!
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -59,7 +65,7 @@ import com.google.android.material.navigation.NavigationView
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
                 R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
-                R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
+                R.id.password -> Toast.makeText(applicationContext,test,Toast.LENGTH_SHORT).show()
                 R.id.logout -> session.LogoutUser()
             }
             false

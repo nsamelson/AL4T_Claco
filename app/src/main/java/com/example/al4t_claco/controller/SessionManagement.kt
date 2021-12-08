@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import com.example.al4t_claco.LoginActivity
+import com.example.al4t_claco.model.Course
 import com.example.al4t_claco.model.Student
+import com.google.gson.Gson
+
 
 class SessionManagement {
     lateinit var pref: SharedPreferences
@@ -12,23 +15,26 @@ class SessionManagement {
     lateinit var con : Context
     var PRIVATE_MODE : Int = 0
 
+
     constructor(con: Context){
         this.con = con
-        pref = con.getSharedPreferences(PREF_NAME,PRIVATE_MODE)
+        pref = con.getSharedPreferences(companion.PREF_NAME,PRIVATE_MODE)
         editor = pref.edit()
     }
 
-    companion object{
+     object companion{
         val PREF_NAME : String = "Demo"
         val IS_LOGIN : String = "IsLoggedIn"
-        val KEY_NAME : String = "name"
         val KEY_EMAIL : String = "email"
+        val KEY_PASSWORD : String = "password"
+        val KEY_COURSES : String = "courses"
     }
 
-    fun createLoginSession(name:String,email: String){
-        editor.putBoolean(IS_LOGIN,true)
-        editor.putString(KEY_NAME,name)
-        editor.putString(KEY_EMAIL,email)
+    fun createLoginSession(email: String, password : String, course: String){
+        editor.putBoolean(companion.IS_LOGIN,true)
+        editor.putString(companion.KEY_EMAIL,email)
+        editor.putString(companion.KEY_PASSWORD,password)
+        editor.putString(companion.KEY_COURSES,course)
         editor.commit()
     }
 
@@ -43,8 +49,9 @@ class SessionManagement {
 
     fun getUserDetails() : HashMap<String,String>{
         var user : Map<String,String> = HashMap<String,String>()
-        (user as HashMap).put(KEY_NAME, pref.getString(toString(KEY_NAME),"").toString())
-        (user as HashMap).put(KEY_EMAIL, pref.getString(toString(KEY_EMAIL),"").toString())
+        (user as HashMap).put(companion.KEY_EMAIL, pref.getString(companion.KEY_EMAIL,"").toString())
+        (user as HashMap).put(companion.KEY_PASSWORD, pref.getString(companion.KEY_PASSWORD,"").toString())
+        (user as HashMap).put(companion.KEY_COURSES,pref.getString(companion.KEY_COURSES,"").toString())
         return user
     }
 
@@ -59,11 +66,8 @@ class SessionManagement {
     }
 
     fun isLoggedIn() : Boolean{
-        return pref.getBoolean(IS_LOGIN,false)
+        return pref.getBoolean(companion.IS_LOGIN,false)
     }
 
-    private fun toString(keyName: String): String {
-        return KEY_NAME
-    }
 
 }

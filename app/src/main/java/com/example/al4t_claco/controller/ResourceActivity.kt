@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -42,6 +43,16 @@ class ResourceActivity() : AppCompatActivity() {
         //Add the side menu to the page
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
+
+        val session = SessionManagement(applicationContext)
+        session.checkLogin()
+
+        var data : HashMap<String,String> = session.getUserDetails()
+
+        val matricule = data.get(SessionManagement.companion.KEY_EMAIL)!!
+        val headerView = navView.getHeaderView(0)
+        val user = headerView.findViewById<TextView>(R.id.user)
+        user.text = matricule
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
