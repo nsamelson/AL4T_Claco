@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".controller.Dashboard">
         </activity>
+        <activity android:name=".controller.CalendarActivity">
+        </activity>
         <activity
                 android:name=".controller.ResourceActivity"
                 android:parentActivityName=".MainActivity">

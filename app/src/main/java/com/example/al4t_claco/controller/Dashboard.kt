@@ -1,8 +1,7 @@
- package com.example.al4t_claco.controller
+package com.example.al4t_claco.controller
 
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceActivity
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -64,7 +63,7 @@ import com.lokiy.kit.utils.get
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
-                R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
+                R.id.nav_calendar -> startActivity(Intent(applicationContext, CalendarActivity::class.java))
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
                 R.id.password -> Toast.makeText(applicationContext,cou ,Toast.LENGTH_SHORT).show()
                 R.id.logout -> session.logoutdUser()
@@ -97,7 +96,7 @@ import com.lokiy.kit.utils.get
         val course_logo4 = DashboardData(course4,R.drawable.electric_circuit)
 
 
-        val courseNames = listOf<DashboardData>(course_logo,course_logo1,course_logo2,course_logo3,course_logo4);
+        val courseNames = listOf<DashboardData>(course_logo,course_logo1,course_logo2,course_logo3,course_logo4)
 
         adapter = CustomAdapter(this,courseNames)
         courseList.adapter = adapter
