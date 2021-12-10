@@ -1,7 +1,11 @@
 package com.example.al4t_claco.model
 
-class Calendar(courses: List<Course>) {
-    private val courses = courses
+import java.util.*
+
+class Calendar(val events: List<Event>) {
+    val eventPerDay = events.map{ it.dateTime.toString() to it}.toMap()
+
+    //private val courses = courses
     //val Events = Courses.flatMap { it.Activities }.flatMap { it.Events }
     /*
     private var EventList: MutableList<Event> = mutableListOf<Event>()

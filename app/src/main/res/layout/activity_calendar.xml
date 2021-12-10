@@ -10,98 +10,19 @@
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10px"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="1.0"
             app:layout_constraintTop_toBottomOf="parent" android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0">
         <androidx.gridlayout.widget.GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent" android:id="@+id/gridCalendar"
+                android:layout_height="match_parent" android:layout_marginTop="5dp"
+                app:columnCount="2">
 
-            <TextView
-                    android:text="TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView2"/>
-            <androidx.gridlayout.widget.GridLayout
-                    android:layout_width="342dp"
-                    android:layout_height="match_parent"
-                    app:columnCount="1">
 
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button19"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button20"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button21"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button16"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button17"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button18"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button13"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button14"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button15"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button10"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button11"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button12"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button7"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button8"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button9"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button4"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button5"/>
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button6"/>
 
-            </androidx.gridlayout.widget.GridLayout>
+
 
         </androidx.gridlayout.widget.GridLayout>
     </ScrollView>
