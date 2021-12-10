@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val activity =  Activity("Architecture","4MIN-AL4T",teachers)
         var course =  Course ("Electronics","14", 5, 5,"Teacher1",listOf(activity))
         var course2 =  Course ("Computer Science","14", 5, 5,"Teacher1",listOf(activity))
+
         val teach = Teacher("Test", "tst", "123", listOf(course))
         val student = Student("Amine","1","123",listOf(course, course2))
 
