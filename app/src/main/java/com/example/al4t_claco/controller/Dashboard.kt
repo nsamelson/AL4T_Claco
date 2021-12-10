@@ -18,17 +18,22 @@ import com.example.al4t_claco.R
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
 import com.example.al4t_claco.model.File
+import com.example.al4t_claco.model.sessionManager
 import com.example.al4t_claco.view.DashboardData
 import com.example.al4t_claco.view.DataCourse
 import com.google.android.material.navigation.NavigationView
+import com.lokiy.kit.utils.get
 
  class Dashboard  : AppCompatActivity() {
     var adapter: CustomAdapter? =null
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var session: sessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard)
+        session = sessionManager(applicationContext)
+        session.checkLogin()
 
         val courseList: RecyclerView = findViewById<View>(R.id.courseList) as RecyclerView
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
@@ -39,8 +44,13 @@ import com.google.android.material.navigation.NavigationView
         val matricule = intent.getStringExtra("matricule")
         val headerView = navView.getHeaderView(0)
         val user = headerView.findViewById<TextView>(R.id.user)
-        user.text = matricule
 
+
+        var utilisateur: HashMap<String, String> = session.getUserDetails()
+        var name :String = utilisateur.get(sessionManager.companion.KEY_NAME)!!
+        var cou : String = utilisateur.get(sessionManager.companion.KEY_COURSE)!!
+
+        user.text = name
 
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
@@ -56,8 +66,8 @@ import com.google.android.material.navigation.NavigationView
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
                 R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
-                R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
-                R.id.logout -> startActivity(Intent(this, LoginActivity::class.java))
+                R.id.password -> Toast.makeText(applicationContext,cou ,Toast.LENGTH_SHORT).show()
+                R.id.logout -> session.logoutdUser()
             }
             false
         }

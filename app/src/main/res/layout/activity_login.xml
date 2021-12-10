@@ -60,6 +60,15 @@
             android:layout_centerHorizontal="true"
             android:textSize="18dp"
             android:layout_marginTop="10dp"/>
+    <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/btnForgetPass"
+            android:text=""
+            android:layout_centerHorizontal="true"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"/>
 
 
 

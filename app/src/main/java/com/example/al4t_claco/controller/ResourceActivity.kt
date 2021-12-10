@@ -26,6 +26,7 @@ import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.File
 import com.example.al4t_claco.R
 import com.example.al4t_claco.databinding.ActivityResourceBinding
+import com.example.al4t_claco.model.sessionManager
 import com.example.al4t_claco.view.DataActivity
 import java.io.FileOutputStream
 import java.io.IOException
@@ -34,9 +35,11 @@ import com.google.android.material.navigation.NavigationView
 
 class ResourceActivity() : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var session: sessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         val course = intent.getStringExtra("course")
         val activity = intent.getSerializableExtra("activity") as Activity
@@ -60,7 +63,7 @@ class ResourceActivity() : AppCompatActivity() {
                 R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
                 R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
-                R.id.logout -> startActivity(Intent(this, LoginActivity::class.java))
+                R.id.logout -> session.logoutdUser()
             }
             true
         }
