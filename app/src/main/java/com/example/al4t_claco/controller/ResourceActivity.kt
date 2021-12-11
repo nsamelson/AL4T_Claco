@@ -6,9 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.InputType
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +26,7 @@ import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.File
 import com.example.al4t_claco.R
 import com.example.al4t_claco.databinding.ActivityResourceBinding
+import com.example.al4t_claco.model.sessionManager
 import com.example.al4t_claco.view.DataActivity
 import java.io.FileOutputStream
 import java.io.IOException
@@ -30,9 +35,11 @@ import com.google.android.material.navigation.NavigationView
 
 class ResourceActivity() : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var session: sessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         val course = intent.getStringExtra("course")
         val activity = intent.getSerializableExtra("activity") as Activity
@@ -43,16 +50,6 @@ class ResourceActivity() : AppCompatActivity() {
         //Add the side menu to the page
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
-
-        val session = SessionManagement(applicationContext)
-        session.checkLogin()
-
-        var data : HashMap<String,String> = session.getUserDetails()
-
-        val matricule = data.get(SessionManagement.companion.KEY_EMAIL)!!
-        val headerView = navView.getHeaderView(0)
-        val user = headerView.findViewById<TextView>(R.id.user)
-        user.text = matricule
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -66,7 +63,7 @@ class ResourceActivity() : AppCompatActivity() {
                 R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
                 R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
-                R.id.logout -> startActivity(Intent(this, LoginActivity::class.java))
+                R.id.logout -> session.logoutdUser()
             }
             true
         }
@@ -168,11 +165,53 @@ class ResourceActivity() : AppCompatActivity() {
         showResources(activity.resources)
     }
 
+    fun editTextDialog(text: TextView, whichText: String){
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setTitle("Edit the ${whichText}")
 
+        val input = EditText(this)
+
+        input.setText(text.text)
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        dialogBuilder.setView(input)
+
+        dialogBuilder.setNegativeButton(android.R.string.cancel,
+            DialogInterface.OnClickListener { dialog, whichButton -> })
+        dialogBuilder.setPositiveButton(R.string.ok,
+            DialogInterface.OnClickListener { dialog, whichButton ->
+                //TODO : set new description in the activity with the session
+                text.text = input.text.toString()
+                //activity.description = input.text.toString()
+            })
+        val b = dialogBuilder.create()
+        b.show()
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.mod_description -> {
+                Toast.makeText(applicationContext,"Clicked on modify description",Toast.LENGTH_SHORT).show()
+                val text = findViewById<TextView>(R.id.activityDescription)
+                editTextDialog(text,"description")
+                true
+            }
+            R.id.mod_teachers ->{
+
+                Toast.makeText(applicationContext,"Clicked on teachers",Toast.LENGTH_SHORT).show()
+                val text = findViewById<TextView>(R.id.activityTeachersValue)
+                editTextDialog(text,"teachers")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
         if(toggle.onOptionsItemSelected(item)){
             return true
         }
         return super.onOptionsItemSelected(item)
+
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.modify_activity, menu)
+        return true
     }
 }
