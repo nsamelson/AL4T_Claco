@@ -66,8 +66,8 @@ class CalendarActivity : AppCompatActivity() {
         val date5 = LocalDateTime.of(2021, 12, 11, 22, 0)
         val date6 = LocalDateTime.of(2021, 12, 11, 23, 0)
 
-        val date9 = LocalDateTime.of(2021, 12, 11, 21, 0)
-        val date10 = LocalDateTime.of(2021, 12, 11, 22, 0)
+        val date9 = LocalDateTime.of(2021, 12, 12, 21, 0)
+        val date10 = LocalDateTime.of(2021, 12, 12, 22, 0)
 
         val date7 = LocalDateTime.of(2021, 12, 15, 17, 0)
         val date8 = LocalDateTime.of(2021, 12, 15, 19, 0)
@@ -131,26 +131,34 @@ class CalendarActivity : AppCompatActivity() {
 
             val today = LocalDateTime.now()
             val sorted = events.toSortedMap()
+            var todayIsInEvents = true
 
             //if no event for the day
+            val days = (events.keys.toMutableList() + today.toLocalDate()).sorted()
+            val indexOfTodayDay = days.indexOf(today.toLocalDate())
             if (!sorted.containsKey(today.toLocalDate())) {
-
-                //Add day
-                gridlayout.addView(createTextView(today.toLocalDate(), true))
-
-                //Add info that there is nothing planned for the day
-                val otherText = TextView(this)
-                otherText.text = "Nothing planned for the day."
-
-                otherText.width = 1000
-                otherText.height = 80
-                otherText.setPadding(30, 0, 0, 0)
-                otherText.gravity = Gravity.LEFT
-                gridlayout.addView(otherText)
+                todayIsInEvents = false
             }
 
             for ((key, value) in sorted) {
                 //TODO: change color maybe??
+
+                if(!todayIsInEvents ){
+                    if(indexOfTodayDay == (days.indexOf(key)-1)){
+                        gridlayout.addView(createTextView(today.toLocalDate(), true))
+
+                        //Add info that there is nothing planned for the day
+                        val otherText = TextView(this)
+                        otherText.text = "Nothing planned for the day."
+
+                        otherText.width = 1000
+                        otherText.height = 80
+                        otherText.setPadding(30, 0, 0, 0)
+                        otherText.gravity = Gravity.LEFT
+                        gridlayout.addView(otherText)
+                    }
+
+                }
 
                 //create day TextView
                 if (today.toLocalDate() == key) {
@@ -176,20 +184,24 @@ class CalendarActivity : AppCompatActivity() {
 
                 val times = value.toMutableList().map { it.endDate } + today
                 val sortedTimes = times.sorted()
-                val indexOfToday = sortedTimes.indexOf(today)
+                val indexOfTodayTime = sortedTimes.indexOf(today)
 
                 val sortedEvents = value.sortedBy { it.startDate }
 
                 for (event in sortedEvents) {
 
                     //add horizontal line
-
                     if (today.toLocalDate() == key) {
                         val indexOfEvent = sortedEvents.indexOf(event)
-                        if (indexOfEvent == indexOfToday) {
-                            dayEvents.addView(createHorizontalBar())
+                        if (indexOfEvent == indexOfTodayTime) {
+                            if(todayIsInEvents){
+                                dayEvents.addView(createHorizontalBar())
+                            }
+
                         }
                     }
+
+
 
                     val buttonEvent = Button(this, null, android.R.attr.buttonStyle)
                     val eventText =
@@ -216,10 +228,14 @@ class CalendarActivity : AppCompatActivity() {
                     dayEvents.addView(buttonEvent)
 
                 }
-
-                if (sortedTimes.last() == today) {
-                    dayEvents.addView(createHorizontalBar())
+                if (today.toLocalDate() == key) {
+                    if (sortedTimes.last() == today) {
+                        if(todayIsInEvents){
+                            dayEvents.addView(createHorizontalBar())
+                        }
+                    }
                 }
+
 
                 //add space after the buttons
                 val space = Space(this)
