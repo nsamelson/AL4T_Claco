@@ -57,26 +57,26 @@ class CalendarActivity : AppCompatActivity() {
 
         //CREATE EVENTS
 
-        val date1 = LocalDateTime.of(2021, 12, 11, 19, 30)
-        val date2 = LocalDateTime.of(2021, 12, 11, 20, 30)
+        val date1 = LocalDateTime.of(2021, 12, 13, 8, 30)
+        val date2 = LocalDateTime.of(2021, 12, 13, 12, 0)
 
-        val date3 = LocalDateTime.of(2021, 12, 11, 10, 30)
-        val date4 = LocalDateTime.of(2021, 12, 11, 11, 30)
+        val date3 = LocalDateTime.of(2021, 12, 17, 8, 30)
+        val date4 = LocalDateTime.of(2021, 12, 17, 12, 0)
 
-        val date5 = LocalDateTime.of(2021, 12, 11, 22, 0)
-        val date6 = LocalDateTime.of(2021, 12, 11, 23, 0)
+        val date5 = LocalDateTime.of(2021, 12, 17, 12, 45)
+        val date6 = LocalDateTime.of(2021, 12, 17, 14, 0)
 
-        val date9 = LocalDateTime.of(2021, 12, 12, 21, 0)
-        val date10 = LocalDateTime.of(2021, 12, 12, 22, 0)
+        val date9 = LocalDateTime.of(2021, 12, 15, 12, 45)
+        val date10 = LocalDateTime.of(2021, 12, 15, 16, 0)
 
-        val date7 = LocalDateTime.of(2021, 12, 15, 17, 0)
-        val date8 = LocalDateTime.of(2021, 12, 15, 19, 0)
+        val date7 = LocalDateTime.of(2021, 12, 15, 8, 30)
+        val date8 = LocalDateTime.of(2021, 12, 15, 12, 0)
 
-        val event1 = Event("cours 1", Classroom("Ecam"), date1, date2, "Ceci est une description")
-        val event2 = Event("cours 2", Classroom("Teams"), date3, date4, "Ceci est une autre description")
-        val event3 = Event("cours 3", Classroom("XOXO"), date5, date6, "Ceci est encore une description")
-        val event4 = Event("cours 4", Classroom("Ecam"), date7, date8, "Ceci est hihi une description")
-        val event5 = Event("cours 4", Classroom("Ecam"), date9, date10, "Ceci est hidazdahi une description")
+        val event1 = Event("SA4L-L1-4MIN", Classroom("1E06"), date1, date2, "Programmation parallèle  OpenGL\nGroupe : 4MIN\nEns : LUR")
+        val event2 = Event("DD4L-L1-4MIN", Classroom("1G01"), date3, date4, "Labo architecture et qualité logicielle\nGroupe : 4MIN\nEns : J3L")
+        val event3 = Event("AL4T-T1-4MIN", Classroom("1G01"), date5, date6, "architecture et qualité logicielle\nGroupe : 4MIN\nEns : J3L")
+        val event4 = Event("SI4C-L1-4MIN", Classroom("1F04"), date7, date8, "Labo instrumentation\nGroupe : 4MIN\nEns : MCH, MDM")
+        val event5 = Event("OS4T-T1-4MEO-4MIN", Classroom("1G01"), date9, date10, "Systèmes d'exploitation\nGroupe: 4MIN\nEns : HSL, XEI")
         val calendar = Calendar(listOf(event1, event2, event3, event4, event5))
 
         //POPUP OF THE EVENT
@@ -97,6 +97,8 @@ class CalendarActivity : AppCompatActivity() {
             b.show()
         }
 
+        //ADD DAY TEXTVIEW
+
         fun createTextView(date: LocalDate, isToday: Boolean = false): TextView {
             val dateText = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).split(",")
             val formatted = dateText[0] + "\n" + dateText[1].split(" ")[2]
@@ -114,6 +116,8 @@ class CalendarActivity : AppCompatActivity() {
             return dayText
         }
 
+        //SHOW TIME POSITION BETWEEN THE EVENTS
+
         fun createHorizontalBar(): View {
             val marker = View(this)
 
@@ -126,6 +130,7 @@ class CalendarActivity : AppCompatActivity() {
         }
 
         //ADD ALL EVENTS IN THE CALENDAR
+
         fun showEvents(events: MutableMap<LocalDate, MutableList<Event>>) {
             val gridlayout = findViewById<GridLayout>(R.id.gridCalendar)
 
@@ -140,6 +145,7 @@ class CalendarActivity : AppCompatActivity() {
                 todayIsInEvents = false
             }
 
+            //iterate through all the days when there is an event
             for ((key, value) in sorted) {
                 //TODO: change color maybe??
 
@@ -190,7 +196,7 @@ class CalendarActivity : AppCompatActivity() {
 
                 for (event in sortedEvents) {
 
-                    //add horizontal line
+                    //add horizontal line before event
                     if (today.toLocalDate() == key) {
                         val indexOfEvent = sortedEvents.indexOf(event)
                         if (indexOfEvent == indexOfTodayTime) {
@@ -201,7 +207,7 @@ class CalendarActivity : AppCompatActivity() {
                         }
                     }
 
-
+                    //add event button
 
                     val buttonEvent = Button(this, null, android.R.attr.buttonStyle)
                     val eventText =
@@ -228,6 +234,8 @@ class CalendarActivity : AppCompatActivity() {
                     dayEvents.addView(buttonEvent)
 
                 }
+
+                //add horizontal line after event if end of the day
                 if (today.toLocalDate() == key) {
                     if (sortedTimes.last() == today) {
                         if(todayIsInEvents){
