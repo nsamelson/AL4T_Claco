@@ -21,6 +21,7 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.gridlayout.widget.GridLayout
+import com.example.al4t_claco.ChangePassword
 import com.example.al4t_claco.LoginActivity
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.File
@@ -40,6 +41,8 @@ class ResourceActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        session = sessionManager(applicationContext)
+        session.checkLogin()
 
         val course = intent.getStringExtra("course")
         val activity = intent.getSerializableExtra("activity") as Activity
@@ -53,6 +56,15 @@ class ResourceActivity() : AppCompatActivity() {
         //Add the side menu to the page
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
+        val headerView = navView.getHeaderView(0)
+        val user = headerView.findViewById<TextView>(R.id.user)
+
+
+        var utilisateur: HashMap<String, String> = session.getUserDetails()
+        var name :String = utilisateur.get(sessionManager.companion.KEY_NAME)!!
+
+        user.text = name
+
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -65,7 +77,7 @@ class ResourceActivity() : AppCompatActivity() {
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
                 R.id.nav_calendar -> startActivity(Intent(applicationContext, CalendarActivity::class.java))
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
-                R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
+                R.id.password -> startActivity(Intent(applicationContext, ChangePassword::class.java))
                 R.id.logout -> session.logoutdUser()
             }
             true

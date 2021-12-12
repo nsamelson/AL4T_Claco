@@ -1,7 +1,7 @@
 package com.example.al4t_claco.model
 
-class Teacher(name: String, login: String, password: String, workspace: List<Course>) :
-    User(name, login, password, workspace) {
+class Teacher(name: String, email: String, password: String, workspace: List<Course>) :
+    User(name, email, password, workspace) {
 
     fun editCourse(courseCode: String): Boolean{
         //TODO: add parameters to what the teacher could change
