@@ -8,7 +8,7 @@ abstract class User (name: String, login: String, password: String, workspace: L
     val name = name.uppercase();
     val login = login;
     var workspace = workspace
-    val schedule = Calendar(workspace)
+    //val schedule = Calendar(workspace)
 
     var  password = password;
 
