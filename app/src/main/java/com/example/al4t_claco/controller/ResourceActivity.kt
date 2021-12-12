@@ -46,7 +46,10 @@ class ResourceActivity() : AppCompatActivity() {
 
         val binding: ActivityResourceBinding = DataBindingUtil.setContentView(this, R.layout.activity_resource)
         binding.activity = DataActivity(activity,course.toString())
+
         supportActionBar?.title = "Resources"
+
+
         //Add the side menu to the page
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
@@ -60,7 +63,7 @@ class ResourceActivity() : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
-                R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
+                R.id.nav_calendar -> startActivity(Intent(applicationContext, CalendarActivity::class.java))
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
                 R.id.password -> Toast.makeText(applicationContext,"Change password",Toast.LENGTH_SHORT).show()
                 R.id.logout -> session.logoutdUser()

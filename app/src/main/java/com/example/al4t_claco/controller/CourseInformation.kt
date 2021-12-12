@@ -59,7 +59,7 @@ class CourseInformation : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
-                R.id.nav_calendar -> Toast.makeText(applicationContext,"Clicked Calendar", Toast.LENGTH_SHORT).show()
+                R.id.nav_calendar -> startActivity(Intent(applicationContext, CalendarActivity::class.java))
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
                 R.id.password -> Toast.makeText(applicationContext,"Change password", Toast.LENGTH_SHORT).show()
                 R.id.logout -> session.logoutdUser()
