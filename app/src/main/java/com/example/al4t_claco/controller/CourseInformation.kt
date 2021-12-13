@@ -77,7 +77,7 @@ class CourseInformation : AppCompatActivity() {
 
         fun openResourceActivity(activity: Activity, courseName: String): Intent {
             val intent = Intent(this, ResourceActivity::class.java).apply {
-                putExtra("course", "inf4")
+                putExtra("course", course.name)
                 putExtra("activity", activity)
             }
             startActivity(intent)
@@ -126,7 +126,7 @@ class CourseInformation : AppCompatActivity() {
         dialogBuilder.setPositiveButton("ok",
             DialogInterface.OnClickListener{ dialog,whichbutton ->
                 text.text = input.text.toString()
-                //TODO : complete the changement for the "database"
+                //TODO : complete the change for the "database"
             })
         val b = dialogBuilder.create()
         b.show()
