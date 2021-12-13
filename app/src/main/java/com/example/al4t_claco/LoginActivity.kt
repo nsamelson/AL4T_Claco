@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.al4t_claco.controller.Dashboard
 import com.example.al4t_claco.model.*
-import com.google.android.material.textfield.TextInputEditText
 
 
 class LoginActivity : AppCompatActivity() {
@@ -33,8 +32,8 @@ class LoginActivity : AppCompatActivity() {
         var course =  Course ("Electronics","14", 5, 5,"Teacher1","description 1",listOf(activity))
         var course2 =  Course ("Computer Science","14", 5, 5,"Teacher1","description 2",listOf(activity))
 
-        val teach = Teacher("Test", "tst", "123", listOf(course))
-        val student = Student("Amine","1","123",listOf(course, course2))
+        val teach = Teacher("Jean", "J3L@ecam.be", "123", listOf(course))
+        val student = Student("Amine","17@ecam.be","123",listOf(course, course2))
 
         val listVal: List<String> = student.workspace.map { it.name }
         var cou: String = listVal.joinToString(" - ")
@@ -44,13 +43,11 @@ class LoginActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.edt_email)
         val pass = findViewById<EditText>(R.id.edt_password)
         val button = findViewById<Button>(R.id.btnLogIn)
-        val txtViewPassword = findViewById<TextView>(R.id.btnForgetPass)
 
-        txtViewPassword.text = Toast.makeText(applicationContext,cou, Toast.LENGTH_SHORT).show().toString()
 
         button.setOnClickListener {
-            if ((email.text.toString() == student.login) and (pass.text.toString() == student.password)){
-                session.createLoginSession(student.login,student.name, cou)
+            if ((email.text.toString() == student.email) and (pass.text.toString() == student.password)){
+                session.createLoginSession(student.email,student.name, cou)
                 val intent = Intent(this, Dashboard::class.java).apply {
                     putExtra("name","Amine")
                     putExtra("matricule","17")
@@ -58,13 +55,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 }
             }
-        /*txtViewPassword.setOnClickListener{
-            val intent = Intent(this, ChangePassword::class.java).apply{
-                putExtra("name","Amine")
-                putExtra("matricule","17")
-            }
-            startActivity(intent)
-        }*/
+
     }
 }
 

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.al4t_claco.ChangePassword
 import com.example.al4t_claco.LoginActivity
 import com.example.al4t_claco.R
 import com.example.al4t_claco.model.Activity
@@ -65,7 +66,7 @@ import com.lokiy.kit.utils.get
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
                 R.id.nav_calendar -> startActivity(Intent(applicationContext, CalendarActivity::class.java))
                 R.id.nav_forum -> Toast.makeText(applicationContext,"Clicked Forum", Toast.LENGTH_SHORT).show()
-                R.id.password -> Toast.makeText(applicationContext,cou ,Toast.LENGTH_SHORT).show()
+                R.id.password -> startActivity(Intent(applicationContext, ChangePassword::class.java))
                 R.id.logout -> session.logoutdUser()
             }
             false

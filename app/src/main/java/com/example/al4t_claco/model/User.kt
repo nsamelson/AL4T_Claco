@@ -4,9 +4,9 @@ import java.sql.Date
 import java.io.Serializable
 import java.sql.Time
 
-abstract class User (name: String, login: String, password: String, workspace: List<Course>):Serializable{
+abstract class User (name: String, email: String, password: String, workspace: List<Course>):Serializable{
     val name = name.uppercase();
-    val login = login;
+    val email = email;
     var workspace = workspace
     //val schedule = Calendar(workspace)
 
