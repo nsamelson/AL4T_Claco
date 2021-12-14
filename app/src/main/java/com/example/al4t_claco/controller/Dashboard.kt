@@ -28,6 +28,7 @@ import com.lokiy.kit.utils.get
     var adapter: CustomAdapter? =null
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var session: sessionManager
+    lateinit var utilisateur : HashMap<String,String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,23 +36,20 @@ import com.lokiy.kit.utils.get
         session = sessionManager(applicationContext)
         session.checkLogin()
 
-        val courseList: RecyclerView = findViewById<View>(R.id.courseList) as RecyclerView
+        supportActionBar?.title = "Workspace"
+
+        //SIDE MENU
+
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
-
-        val courseImages = ArrayList<Int>()
-
-        val matricule = intent.getStringExtra("matricule")
         val headerView = navView.getHeaderView(0)
         val user = headerView.findViewById<TextView>(R.id.user)
 
-
-        var utilisateur: HashMap<String, String> = session.getUserDetails()
+        utilisateur = session.getUserDetails()
         var name :String = utilisateur.get(sessionManager.companion.KEY_NAME)!!
         var cou : String = utilisateur.get(sessionManager.companion.KEY_COURSE)!!
 
         user.text = name
-
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -60,7 +58,6 @@ import com.lokiy.kit.utils.get
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
-//
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.nav_home -> startActivity(Intent(this, Dashboard::class.java))
@@ -72,15 +69,16 @@ import com.lokiy.kit.utils.get
             false
         }
 
-        //TODO : Bouger ca autre part mais pas ultra important pour le moment
+        //CREATE ACTIVITIES AND COURSES
 
+
+        //TODO : Get this from the API instead of creating them here
         val activity = Activity("Activity 1","4inf", listOf("Lorge","Lurkin","Dekimpe"),"This is the description of activity 1")
         val activity2 = Activity("Activity 2","4inf", listOf("Lorge","Lurkin","Dekimpe"),"This is the description of activity 2")
         val activity3 = Activity("Activity 3","4inf", listOf("Lorge","Lurkin","Dekimpe"),"This is the description of activity 3")
         val activity4 = Activity("Parallel programming, OpenGL","4inf", listOf("Lurkin"),"Notions present in this course : memory management in C++, 3D render with OpenGL ...")
         val activity5 = Activity("Algorithmic","4inf", listOf("Hasselmann"),"This course is about algorithms, it will cover the basics on algorithmic complexity, data structures and their applications. The course will feature exercices along the way and a small presentation and the end of the session")
         val activity6 = Activity("Image processing lab","4inf", listOf("Lurkin","Madmad"),"Notions present in this course : filtering, morphological operations, projective geometry ...")
-
 
         activity.resources = listOf(File("file 1","pdf"), File("file 2","pdf"), File("file 3","pdf"), File("file 4","PDF"))
         activity2.resources = listOf(File("file 1","pdf"), File("file 2","pdf"), File("file 3","pdf"), File("file 4","PDF"))
@@ -104,27 +102,18 @@ import com.lokiy.kit.utils.get
         val course_logo3 = DashboardData(course3,R.drawable.ic_launcher_foreground)
         val course_logo4 = DashboardData(course4,R.drawable.electric_circuit)
 
-
         val courseNames = listOf<DashboardData>(course_logo,course_logo1,course_logo2,course_logo3,course_logo4)
 
+        //CALL ADAPTER TO DISPLAY COURSES
+
+        val courseList: RecyclerView = findViewById<View>(R.id.courseList) as RecyclerView
         adapter = CustomAdapter(this,courseNames)
         courseList.adapter = adapter
         courseList.layoutManager = GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false)
 
-        //courseList.adapter = Adapter(this,courseNames,courseImages);
-        //courseList.layoutManager = GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
-
-        //val adapter = Adapter(this, CourseNames, CourseImages);
-        //val gridLayoutManager = GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
-        //courseList.layoutManager = gridLayoutManager;
-
     }
 
-     fun OnCreateOptionsMenu(menu: ContextMenu?) : Boolean {
-        menuInflater.inflate(R.menu.side_menu,menu);
-        return true
-    }
-
+    //Open the side menu when button pressed
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){
             return true

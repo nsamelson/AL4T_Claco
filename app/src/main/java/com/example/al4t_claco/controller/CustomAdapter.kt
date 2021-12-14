@@ -18,22 +18,26 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<DashboardData>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     var inflater: LayoutInflater
 
+    //Create and display the view
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = inflater.inflate(R.layout.custom_grid_layout, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder : ViewHolder, position: Int) {
-        if(position < CourseNames.size) {              //defining int position = 4, that makes the bug. Need to change that, managing to keep index in bounds
+    //Add the Courses from the list to the view
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if (position < CourseNames.size) {
             holder.CourseName.setText(CourseNames[position].course.name)
             holder.gridIcon.setImageResource(CourseNames[position].logo)
         }
     }
 
+    //Get the number of courses of the user
     override fun getItemCount(): Int {
         return CourseNames.size
     }
 
+    //Set action when element from gridview pressed
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var CourseName: TextView
         var gridIcon: ImageView
@@ -41,25 +45,15 @@ class CustomAdapter(ctx: Context?, var CourseNames: List<DashboardData>) :
         init {
             CourseName = itemView.findViewById(R.id.courseName)
             gridIcon = itemView.findViewById(R.id.courseImage)
-
-
-
-                itemView.setOnClickListener { v ->
-                    val intent = Intent(v.context, CourseInformation::class.java).apply {
-                        putExtra("course",CourseNames[adapterPosition].course)
-                    }
-                    v.context.startActivity(intent)
-                    Toast.makeText(
-                        v.context,
-                        "${CourseNames[adapterPosition].course.name}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+            itemView.setOnClickListener { v ->
+                val intent = Intent(v.context, CourseInformation::class.java).apply {
+                    putExtra("course", CourseNames[adapterPosition].course)
+                }
+                v.context.startActivity(intent)
             }
-
-
         }
     }
+
     init {
         inflater = LayoutInflater.from(ctx)
     }

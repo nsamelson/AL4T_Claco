@@ -25,6 +25,6 @@
               app:layout_constraintTop_toBottomOf="@+id/imageView"
               app:layout_constraintStart_toStartOf="parent"
               android:textSize="25dp"
-              android:layout_marginStart="8dp"/>
+              android:layout_marginStart="32dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
