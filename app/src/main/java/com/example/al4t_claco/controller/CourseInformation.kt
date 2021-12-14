@@ -33,6 +33,7 @@ import com.google.android.material.navigation.NavigationView
 class CourseInformation : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var session: sessionManager
+    lateinit var utilisateur: HashMap<String, String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,27 +42,28 @@ class CourseInformation : AppCompatActivity() {
         session.checkLogin()
 
         val course = intent.getSerializableExtra("course") as Course
-        //test
 
         val binding: ActivityCourseInformationBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_course_information)
         binding.course = DataCourse(course)
         supportActionBar?.title = "Course"
 
+        //SIDE MENU
+
         val drawerLayout: DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView: NavigationView = findViewById<View>(R.id.navView) as NavigationView
         val headerView = navView.getHeaderView(0)
         val user = headerView.findViewById<TextView>(R.id.user)
 
-        var utilisateur: HashMap<String, String> = session.getUserDetails()
+
+        utilisateur = session.getUserDetails()
         var name :String = utilisateur.get(sessionManager.companion.KEY_NAME)!!
 
-        user.text = name
 
+        user.text = name
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
@@ -151,8 +153,17 @@ class CourseInformation : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    //If the user is a Teacher, display options to modify the course details
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.modify_course, menu)
-        return true
+        session = sessionManager(applicationContext)
+        session.checkLogin()
+        var type : String = utilisateur.get(sessionManager.companion.KEY_TYPE)!!
+
+        if (type == "Teacher") {
+            menuInflater.inflate(R.menu.modify_course, menu)
+            return true
+        }else{
+            return false
+        }
     }
 }

@@ -37,6 +37,7 @@ import com.google.android.material.navigation.NavigationView
 class ResourceActivity() : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var session: sessionManager
+    lateinit var utilisateur: HashMap<String, String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,19 +53,17 @@ class ResourceActivity() : AppCompatActivity() {
 
         supportActionBar?.title = "Resources"
 
+        //SIDE MENU
 
-        //Add the side menu to the page
         val drawerLayout : DrawerLayout = findViewById<View>(R.id.drawerLayout) as DrawerLayout
         val navView : NavigationView = findViewById<View>(R.id.navView) as NavigationView
         val headerView = navView.getHeaderView(0)
         val user = headerView.findViewById<TextView>(R.id.user)
 
-
-        var utilisateur: HashMap<String, String> = session.getUserDetails()
+        utilisateur = session.getUserDetails()
         var name :String = utilisateur.get(sessionManager.companion.KEY_NAME)!!
 
         user.text = name
-
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -82,6 +81,8 @@ class ResourceActivity() : AppCompatActivity() {
             }
             true
         }
+
+
         fun downloadFile(file: File){
             //TODO : find another method to get the download directory
             val outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
@@ -225,8 +226,19 @@ class ResourceActivity() : AppCompatActivity() {
 
 
     }
+
+    //If the user is a Teacher, display options to modify the activity details
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.modify_activity, menu)
-        return true
+        session = sessionManager(applicationContext)
+        session.checkLogin()
+
+        var type : String = utilisateur.get(sessionManager.companion.KEY_TYPE)!!
+
+        if (type == "Teacher") {
+            menuInflater.inflate(R.menu.modify_activity, menu)
+            return true
+        }else{
+            return false
+        }
     }
 }
