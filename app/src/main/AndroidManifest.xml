@@ -12,24 +12,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AL4T_Claco">
-        <activity android:name=".controller.ChangePassword">
-        </activity>
-        <activity
-                android:name=".controller.PdfViewActivity"
-                android:parentActivityName=".controller.ResourceActivity">
-        </activity>
-        <activity android:name=".controller.Dashboard">
-        </activity>
-        <activity android:name=".controller.CalendarActivity">
-        </activity>
-        <activity
-                android:name=".controller.ResourceActivity"
-                android:parentActivityName=".MainActivity">
-        </activity>
-        <activity
-                android:name=".controller.CourseInformation"
-                android:parentActivityName=".controller.Dashboard">
-        </activity>
+
         <activity
                 android:name=".controller.LoginActivity"
                 android:exported="true">
@@ -39,6 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-    </application>
 
+        <activity android:name=".controller.Dashboard"></activity>
+
+        <activity android:name=".controller.CourseInformation"></activity>
+
+        <activity android:name=".controller.ResourceActivity"></activity>
+
+        <activity
+                android:name=".controller.PdfViewActivity"
+                android:parentActivityName=".controller.ResourceActivity">
+        </activity>
+
+        <activity android:name=".controller.ChangePassword"></activity>
+
+
+        <activity android:name=".controller.CalendarActivity"></activity>
+
+    </application>
 </manifest>

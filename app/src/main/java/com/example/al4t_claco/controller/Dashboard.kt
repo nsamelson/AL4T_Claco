@@ -19,6 +19,9 @@ import com.example.al4t_claco.model.sessionManager
 import com.example.al4t_claco.view.DashboardData
 import com.google.android.material.navigation.NavigationView
 
+/* This is the class that shows the page workspace, where the user is going to be able to
+ *  see the courses in which he is registered to.
+*/
 class Dashboard  : AppCompatActivity() {
     var adapter: CustomAdapter? =null
     lateinit var toggle: ActionBarDrawerToggle
