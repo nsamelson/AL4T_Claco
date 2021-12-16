@@ -14,6 +14,9 @@ import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
 import com.example.al4t_claco.view.DashboardData
 
+/*
+ * This class is used to render the custom gridlayout with the recycler view of the workspace.
+*/
 class CustomAdapter(ctx: Context?, var CourseNames: List<DashboardData>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     var inflater: LayoutInflater
