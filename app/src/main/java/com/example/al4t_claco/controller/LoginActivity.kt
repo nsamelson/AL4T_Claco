@@ -8,7 +8,9 @@ import android.widget.EditText
 import com.example.al4t_claco.R
 import com.example.al4t_claco.model.*
 
-
+/* This is the class that shows the page Login, where the user is can put his email and password
+*  in order to have access to the workspace
+*/
 class LoginActivity : AppCompatActivity() {
 
     lateinit var session: sessionManager
@@ -16,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        //Session
         session = sessionManager(applicationContext)
         if (session.isLoggedIn()) {
             var intent = Intent(applicationContext, Dashboard::class.java)
@@ -24,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        //TODO : Get this from the API instead of creating them here
 
         val teachers = listOf("Teacher1", "Teacher2")
         val activity = Activity("Architecture", "4MIN-AL4T", teachers, "lalalla")
@@ -41,9 +46,10 @@ class LoginActivity : AppCompatActivity() {
         val pass = findViewById<EditText>(R.id.edt_password)
         val button = findViewById<Button>(R.id.btnLogIn)
 
-
+        // check if the user has put the correct email and password
         button.setOnClickListener {
             if ((email.text.toString() == student.email) and (pass.text.toString() == student.password)) {
+                //user information saved in session
                 session.createLoginSession(student.name, student.email, cou, "Teacher")
                 val intent = Intent(this, Dashboard::class.java).apply {
                     putExtra("name", "Amine")

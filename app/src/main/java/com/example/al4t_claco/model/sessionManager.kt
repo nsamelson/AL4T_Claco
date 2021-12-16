@@ -5,6 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import com.example.al4t_claco.controller.LoginActivity
 
+/*
+ * This class is used to save the session and to kill it if we want to
+*/
 public class sessionManager {
     lateinit var pref : SharedPreferences
     lateinit var  editor: SharedPreferences.Editor
