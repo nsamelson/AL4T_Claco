@@ -23,8 +23,6 @@ abstract class User (name: String, email: String, password: String, workspace: L
     }
 
     fun getCourse(courseCode: String): String{
-        //TODO: find a way to return the Course
-        //TODO: replace the for loop with a if (courseCode in Workspace)
         for (course in workspace){
             if (courseCode == course.code){
                 return course.name
@@ -45,7 +43,7 @@ abstract class User (name: String, email: String, password: String, workspace: L
     }
 
     fun downladResource(activityCode: String,resourceName: String){
-        //TODO: maybe put inside activities
+        //TODO
     }
 
 
