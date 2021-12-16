@@ -30,6 +30,9 @@ import java.io.IOException
 
 import com.google.android.material.navigation.NavigationView
 
+/* This is the class that shows the page "resources", where information about an activity is shown,
+*  as well as the files of the activity like the slides and syllabi.
+*/
 class ResourceActivity() : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var session: sessionManager
@@ -38,8 +41,12 @@ class ResourceActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // SESSION INFORMATION
+
         session = sessionManager(applicationContext)
         session.checkLogin()
+
+        //GET ACTIVITY INFORMATION FROM "COURSEINFORMATION"
 
         val course = intent.getStringExtra("course")
         val activity = intent.getSerializableExtra("activity") as Activity
@@ -78,9 +85,9 @@ class ResourceActivity() : AppCompatActivity() {
             true
         }
 
-
+        //download a file from the assets to phone storage
         fun downloadFile(file: File){
-            //TODO : find another method to get the download directory
+            //TODO : find another method to download (work with API instead of having the resources in the assets)
             val outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             val outFile = java.io.File(outDir, file.fullName)
 
@@ -104,11 +111,16 @@ class ResourceActivity() : AppCompatActivity() {
             }
         }
 
-        //open pdf
+        //open and read pdf
         fun openFile(file: File) {
-            val intent = Intent(this, PdfViewActivity::class.java)
-            intent.putExtra("file", file)
-            startActivity(intent)
+            if(file.type =="pdf"){
+                val intent = Intent(this, PdfViewActivity::class.java)
+                intent.putExtra("file", file)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(applicationContext,"The file type is unknown",Toast.LENGTH_LONG).show()
+            }
         }
 
         //popup listener
@@ -121,7 +133,7 @@ class ResourceActivity() : AppCompatActivity() {
             }
         }
 
-        //POPUP
+        //popup for proposing to open or download the file
         fun createAndShowDialog(file: File) {
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder.setTitle("Do you want to download the following file?")
@@ -143,15 +155,17 @@ class ResourceActivity() : AppCompatActivity() {
             b.show()
         }
 
+        //Dynamically show resources in a grid
         fun showResources(files: List<File>) {
             val gridlayout = findViewById<GridLayout>(R.id.gridResources)
 
-
             //CREATE BUTTONS
+
             for (file in files) {
                 val newButton = Button(this, null, android.R.attr.borderlessButtonStyle)
                 val buttonImage: Int
 
+                //if file type is known
                 when (file.type) {
                     "pdf" -> buttonImage = R.drawable.pdf_medium
                     else -> buttonImage = R.drawable.not_found_medium
@@ -177,6 +191,7 @@ class ResourceActivity() : AppCompatActivity() {
         showResources(activity.resources)
     }
 
+    //edit text in the activity information if user is a teacher
     fun editTextDialog(text: TextView, whichText: String){
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setTitle("Edit the ${whichText}")
@@ -193,11 +208,12 @@ class ResourceActivity() : AppCompatActivity() {
             DialogInterface.OnClickListener { dialog, whichButton ->
                 //TODO : set new description in the activity with the session
                 text.text = input.text.toString()
-                //activity.description = input.text.toString()
             })
         val b = dialogBuilder.create()
         b.show()
     }
+
+    //adds rollup menu and top right button to edit text
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.mod_description -> {

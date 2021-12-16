@@ -21,6 +21,9 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
+/*
+* This file is used to display the calendar activity
+*/
 
 class CalendarActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
@@ -29,9 +32,13 @@ class CalendarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
+
+        //SESSION
+
         session = sessionManager(applicationContext)
         session.checkLogin()
 
+        //title
         supportActionBar?.title = "Calendar"
 
         //SIDE MENU
@@ -64,6 +71,7 @@ class CalendarActivity : AppCompatActivity() {
         }
 
         //CREATE EVENTS
+        //TODO: implement the calendar API here
 
         val date1 = LocalDateTime.of(2021, 12, 13, 8, 30)
         val date2 = LocalDateTime.of(2021, 12, 13, 12, 0)
@@ -155,8 +163,6 @@ class CalendarActivity : AppCompatActivity() {
 
             //iterate through all the days when there is an event
             for ((key, value) in sorted) {
-                //TODO: change color maybe??
-
                 if(!todayIsInEvents ){
                     if(indexOfTodayDay == (days.indexOf(key)-1)){
                         gridlayout.addView(createTextView(today.toLocalDate(), true))
@@ -183,7 +189,6 @@ class CalendarActivity : AppCompatActivity() {
 
 
                 //create gridlayout for events of the day
-
                 val dayEvents = GridLayout(this)
                 dayEvents.columnCount = 1
 
@@ -195,7 +200,6 @@ class CalendarActivity : AppCompatActivity() {
                 dayEvents.setPadding(8, 0, 280, 0)
 
                 //create buttons
-
                 val times = value.toMutableList().map { it.endDate } + today
                 val sortedTimes = times.sorted()
                 val indexOfTodayTime = sortedTimes.indexOf(today)
@@ -216,12 +220,12 @@ class CalendarActivity : AppCompatActivity() {
                     }
 
                     //add event button
-
                     val buttonEvent = Button(this, null, android.R.attr.buttonStyle)
                     val eventText =
                         event.name + "\n" + event.startDate.toLocalTime() + " - " + event.endDate.toLocalTime()
                     buttonEvent.text = eventText
                     buttonEvent.isAllCaps = false
+
                     //buttonEvent.width = R.dimen.event_width //not working for some reason
                     buttonEvent.backgroundTintList = getColorStateList(R.color.button_color)
                     buttonEvent.setTextColor(getColor(R.color.white))
@@ -233,14 +237,12 @@ class CalendarActivity : AppCompatActivity() {
                     buttonParams.setMargins(0, 0, 0, 0)
                     buttonEvent.layoutParams = buttonParams
 
-
                     buttonEvent.setOnClickListener(View.OnClickListener {
                         Toast.makeText(applicationContext, "clicked on ${event.name}", Toast.LENGTH_SHORT).show()
                         showEventDialog(event)
                     })
 
                     dayEvents.addView(buttonEvent)
-
                 }
 
                 //add horizontal line after event if end of the day
@@ -251,7 +253,6 @@ class CalendarActivity : AppCompatActivity() {
                         }
                     }
                 }
-
 
                 //add space after the buttons
                 val space = Space(this)
@@ -272,20 +273,17 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         if (toggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
-
-
     }
 
+    //Rollup menu and search button
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.search, menu)
         val menuItem = menu?.findItem(R.id.action_search)
         val searchView = menuItem?.actionView
-        val text: String = "Search"
         searchView?.setAutofillHints("Search date")
 
         return true
