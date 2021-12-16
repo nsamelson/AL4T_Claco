@@ -3,7 +3,7 @@ package com.example.al4t_claco.model
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.example.al4t_claco.LoginActivity
+import com.example.al4t_claco.controller.LoginActivity
 
 public class sessionManager {
     lateinit var pref : SharedPreferences

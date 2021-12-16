@@ -18,14 +18,10 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.gridlayout.widget.GridLayout
-import com.example.al4t_claco.ChangePassword
-import com.example.al4t_claco.LoginActivity
 import com.example.al4t_claco.R
 import com.example.al4t_claco.databinding.ActivityCourseInformationBinding
-import com.example.al4t_claco.databinding.ActivityResourceBinding
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
-import com.example.al4t_claco.model.File
 import com.example.al4t_claco.model.sessionManager
 import com.example.al4t_claco.view.DataCourse
 import com.google.android.material.navigation.NavigationView

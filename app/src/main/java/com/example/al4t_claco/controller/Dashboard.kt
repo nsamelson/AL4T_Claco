@@ -2,7 +2,6 @@ package com.example.al4t_claco.controller
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -12,19 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.al4t_claco.ChangePassword
-import com.example.al4t_claco.LoginActivity
 import com.example.al4t_claco.R
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.Course
 import com.example.al4t_claco.model.File
 import com.example.al4t_claco.model.sessionManager
 import com.example.al4t_claco.view.DashboardData
-import com.example.al4t_claco.view.DataCourse
 import com.google.android.material.navigation.NavigationView
-import com.lokiy.kit.utils.get
 
- class Dashboard  : AppCompatActivity() {
+class Dashboard  : AppCompatActivity() {
     var adapter: CustomAdapter? =null
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var session: sessionManager
