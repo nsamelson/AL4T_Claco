@@ -6,13 +6,18 @@ import android.widget.Toast
 import com.example.al4t_claco.R
 import com.example.al4t_claco.model.File
 import com.github.barteksc.pdfviewer.PDFView
-
+/*
+* This is the activity used to display a pdf
+*/
 class PdfViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf_view)
 
+        //get the file object from ResourceActivity
         val file = intent.getSerializableExtra("file") as File
+
+        //TODO: Files are currently only in the assets, use an API to get from a database or implement to get from the web
         showPdfFromAssets(file.fullName)
 
         supportActionBar?.title = file.name
@@ -25,6 +30,7 @@ class PdfViewActivity : AppCompatActivity() {
         return true
     }
 
+    //get the file frop assets and displays it
     private fun showPdfFromAssets(pdfName: String){
         val pdfView = findViewById<PDFView>(R.id.pdfView)
         pdfView.fromAsset(pdfName)
