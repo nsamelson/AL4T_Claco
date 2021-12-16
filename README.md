@@ -63,8 +63,8 @@ The classroom is class having a name as the class location.
 3.1. For Linux : ```sdk.dir=/YOUR_PATH/Android/Sdk```  
 3.2. For Windows : ```sdk.dir=C\:\\Users\\USER\\AppData\\Local\\Android\\Sdk```  
 4. Download Android Sdk 31
-5. If you're on windows, you may encounter an error building the project :
-5.1. Go into ```C:\Users\USER\AppData\Local\Android\Sdk\build-tools\31.0.0\``` and rename the file ```d8``` to ```dx```.
+5. If you're on windows, you may encounter an error building the project :  
+5.1. Go into ```C:\Users\USER\AppData\Local\Android\Sdk\build-tools\31.0.0\``` and rename the file ```d8``` to ```dx```.  
 5.2. Go into ```C:\Users\USER\AppData\Local\Android\Sdk\build-tools\31.0.0\lib``` and rename the file ```d8``` to ```dx```
 
 ### 6.2. How to modify
