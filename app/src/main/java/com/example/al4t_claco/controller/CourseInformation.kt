@@ -26,6 +26,9 @@ import com.example.al4t_claco.model.sessionManager
 import com.example.al4t_claco.view.DataCourse
 import com.google.android.material.navigation.NavigationView
 
+/* This is the class that shows the page describing the information of a course including all the activities
+ */
+
 class CourseInformation : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var session: sessionManager
@@ -34,8 +37,13 @@ class CourseInformation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_information)
+
+        //SESSION INFORMATION
+
         session = sessionManager(applicationContext)
         session.checkLogin()
+
+        //GET THE NAME OF THE COURSE TO DISPLAY
 
         val course = intent.getSerializableExtra("course") as Course
 
@@ -73,6 +81,8 @@ class CourseInformation : AppCompatActivity() {
             true
         }
 
+        //open the resource page
+
         fun openResourceActivity(activity: Activity, courseName: String): Intent {
             val intent = Intent(this, ResourceActivity::class.java).apply {
                 putExtra("course", course.name)
@@ -81,6 +91,8 @@ class CourseInformation : AppCompatActivity() {
             startActivity(intent)
             return intent
         }
+
+        //list all activities from the course
 
         fun showCourseInformation(activities: List<Activity>) {
             val gridlayout = findViewById<GridLayout>(R.id.gridResources)
@@ -105,6 +117,8 @@ class CourseInformation : AppCompatActivity() {
         showCourseInformation(course.activities)
 
     }
+
+    //display the button to change the description of a course
 
     fun editTextDialog(text: TextView){
         val dialogBuilder = AlertDialog.Builder(this)

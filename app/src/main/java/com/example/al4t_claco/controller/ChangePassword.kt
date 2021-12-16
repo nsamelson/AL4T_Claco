@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.al4t_claco.R
 
-/* This is the class that shows the page Change Password, where the user is can change his password.
+/* This is the class that shows the page Change Password, where the user can change his password.
 */
 class ChangePassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
