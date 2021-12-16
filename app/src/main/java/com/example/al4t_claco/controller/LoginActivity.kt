@@ -1,13 +1,11 @@
-package com.example.al4t_claco
+package com.example.al4t_claco.controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import com.example.al4t_claco.controller.Dashboard
+import com.example.al4t_claco.R
 import com.example.al4t_claco.model.*
 
 

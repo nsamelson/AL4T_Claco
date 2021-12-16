@@ -5,8 +5,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
-import android.text.Editable
 import android.text.InputType
 import android.view.Menu
 import android.view.MenuItem
@@ -21,8 +19,6 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.gridlayout.widget.GridLayout
-import com.example.al4t_claco.ChangePassword
-import com.example.al4t_claco.LoginActivity
 import com.example.al4t_claco.model.Activity
 import com.example.al4t_claco.model.File
 import com.example.al4t_claco.R
