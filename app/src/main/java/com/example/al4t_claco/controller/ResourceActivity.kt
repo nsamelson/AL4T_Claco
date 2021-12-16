@@ -206,7 +206,7 @@ class ResourceActivity() : AppCompatActivity() {
             DialogInterface.OnClickListener { dialog, whichButton -> })
         dialogBuilder.setPositiveButton(R.string.ok,
             DialogInterface.OnClickListener { dialog, whichButton ->
-                //TODO : set new description in the activity with the session
+                //TODO : set new info in the activity with an API call
                 text.text = input.text.toString()
             })
         val b = dialogBuilder.create()
